@@ -37,30 +37,27 @@ public class MainActivity extends AppCompatActivity {
         // Check contacts permission.
         if (ActivityCompat.checkSelfPermission(this, READ_CONTACTS) == PERMISSION_GRANTED) {
 
-            Log.e(TAG, "Permission granted previously."); // TODO: remove
-
             // Permission granted previously.
+            Log.d(TAG, "Permission granted previously.");
             mMessage.setText(R.string.no_results);
 
             // TODO: query contacts
 
         } else {
 
-            Log.e(TAG, "Permission is not granted."); // TODO: remove
-
             // Permission is not granted.
+            Log.d(TAG, "Permission is not granted.");
             mMessage.setText(R.string.no_permission);
 
             // Should we show an explanation?
             if (ActivityCompat.shouldShowRequestPermissionRationale(this, READ_CONTACTS)) {
-                //Snackbar.make(mBaseLayout, R.string.permission_denied, LENGTH_LONG).show();
-                Log.e(TAG, "We should show an explanation/rationale."); // TODO: remove
+                Log.d(TAG, "We should show an explanation/rationale.");
             }
 
             // No explanation needed; request the permission.
             else {
+                Log.d(TAG, "No explanation needed; request the permission.");
                 ActivityCompat.requestPermissions(this, new String[]{READ_CONTACTS}, REQUEST_CODE_CONTACTS);
-                Log.e(TAG, "No explanation needed; request the permission."); // TODO: remove
             }
         }
     }
@@ -72,13 +69,15 @@ public class MainActivity extends AppCompatActivity {
                 // If request is cancelled, the result arrays are empty.
                 if (grantResults.length > 0 && grantResults[0] == PERMISSION_GRANTED) {
                     // Contacts permission granted.
-                    Log.e(TAG, "Contacts permission granted."); // TODO: remove
+                    Log.d(TAG, "Contacts permission granted.");
                     mMessage.setText(R.string.no_results);
                     Snackbar.make(mBaseLayout, R.string.permission_granted, LENGTH_LONG).show();
+
                     // TODO: query contacts
+
                 } else {
                     // Contacts permission denied.
-                    Log.e(TAG, "Contacts permission denied."); // TODO: remove
+                    Log.d(TAG, "Contacts permission denied.");
                     mMessage.setText(R.string.no_permission);
                     Snackbar.make(mBaseLayout, R.string.permission_denied, LENGTH_LONG).show();
                 }
