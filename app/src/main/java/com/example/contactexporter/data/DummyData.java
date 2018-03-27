@@ -1,4 +1,4 @@
-package com.example.contactexporter;
+package com.example.contactexporter.data;
 
 import java.util.ArrayList;
 import java.util.HashMap;

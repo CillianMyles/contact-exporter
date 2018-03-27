@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.contactexporter.data.Contact;
+
 import java.util.List;
 
 /**
@@ -58,13 +60,13 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
         return lOldList;
     }
 
-    public class ContactViewHolder extends RecyclerView.ViewHolder {
+    class ContactViewHolder extends RecyclerView.ViewHolder {
 
         private ImageView mImage;
         private TextView mInitials;
         private TextView mName;
 
-        public ContactViewHolder(View itemView) {
+        ContactViewHolder(View itemView) {
             super(itemView);
             mImage = itemView.findViewById(R.id.image);
             mInitials = itemView.findViewById(R.id.initials);

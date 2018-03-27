@@ -1,4 +1,4 @@
-package com.example.contactexporter;
+package com.example.contactexporter.data;
 
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;

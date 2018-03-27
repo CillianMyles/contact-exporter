@@ -15,6 +15,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.contactexporter.data.Contact;
+import com.example.contactexporter.data.ContactsViewModel;
+
 import java.util.List;
 
 import static android.Manifest.permission.READ_CONTACTS;
