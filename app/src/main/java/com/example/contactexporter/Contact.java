@@ -44,6 +44,26 @@ public class Contact implements Serializable {
         }
     }
 
+    public String initials() {
+        if (mData == null || mData.isEmpty()) {
+            return "";
+        }
+
+        String lFirst = firstName();
+        String lLast = lastName();
+
+        final String lInitials;
+        if (!TextUtils.isEmpty(lFirst) && !TextUtils.isEmpty(lLast)) {
+            lInitials = lFirst.substring(0, 1) + lLast.substring(0, 1);
+        } else if (!TextUtils.isEmpty(lLast)) {
+            lInitials = lLast.substring(0, 1);
+        } else {
+            lInitials = lFirst.substring(0, 1);
+        }
+
+        return lInitials;
+    }
+
     private String firstName() {
         return getValue("first_name");
     }

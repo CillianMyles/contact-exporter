@@ -61,16 +61,19 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
     public class ContactViewHolder extends RecyclerView.ViewHolder {
 
         private ImageView mImage;
+        private TextView mInitials;
         private TextView mName;
 
         public ContactViewHolder(View itemView) {
             super(itemView);
             mImage = itemView.findViewById(R.id.image);
+            mInitials = itemView.findViewById(R.id.initials);
             mName = itemView.findViewById(R.id.name);
         }
 
         private void bind(Contact pContact) {
             // TODO: image
+            mInitials.setText(pContact.initials());
             mName.setText(pContact.fullName());
         }
     }
