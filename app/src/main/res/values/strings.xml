@@ -3,8 +3,8 @@
 
     <string name="app_name">Contact Exporter</string>
     <string name="search">Search contacts</string>
-    <string name="no_results">No contacts found matching that search!</string>
-    <string name="permission_granted">Contacts permission granted - thanks!</string>
+    <string name="no_results">No contacts found…</string>
+    <string name="permission_granted">Contacts permission granted!</string>
     <string name="permission_denied">This app needs the contacts permission!</string>
     <string name="no_permission">This app needs the contacts permission to export contacts.\n\nPlease enable in settings!</string>
 
