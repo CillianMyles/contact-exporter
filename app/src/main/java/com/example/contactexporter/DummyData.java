@@ -5,6 +5,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Created by Cillian Myles on 27/03/2018.
+ * Copyright (c) 2018 Cillian Myles. All rights reserved.
+ */
 public class DummyData {
 
     public static Contact random() {
