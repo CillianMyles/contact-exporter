@@ -28,25 +28,36 @@ public class Contact implements Serializable {
     }
 
     public String fullName() {
-        String lName = "Unknown Name"; // TODO: !?
         if (mData == null || mData.isEmpty()) {
-            return lName;
+            return "";
         }
 
-        String lFirst = mData.get("first_name");
-        String lLast = mData.get("last_name");
+        String lFirst = firstName();
+        String lLast = lastName();
 
-        String lTemp = "";
-        if (!TextUtils.isEmpty(lFirst)) {
-            lTemp += lFirst;
+        if (!TextUtils.isEmpty(lFirst) && !TextUtils.isEmpty(lLast)) {
+            return lFirst + " " + lLast;
+        } else if (!TextUtils.isEmpty(lLast)) {
+            return lLast;
+        } else {
+            return lFirst;
         }
-        if (!TextUtils.isEmpty(lLast)) {
-            lTemp += " " + lLast;
-        }
-        if (!TextUtils.isEmpty(lTemp)) {
-            lName = lTemp;
+    }
+
+    private String firstName() {
+        return getValue("first_name");
+    }
+
+    private String lastName() {
+        return getValue("last_name");
+    }
+
+    private String getValue(String pKey) {
+        if (mData == null || mData.isEmpty() || TextUtils.isEmpty(pKey)) {
+            return "";
         }
 
-        return lName;
+        final String lValue = mData.get(pKey);
+        return !TextUtils.isEmpty(lValue) ? lValue : "";
     }
 }
