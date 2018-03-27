@@ -16,8 +16,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Bind views.
         mRecyclerView = findViewById(R.id.recycler_view);
         mMessage = findViewById(R.id.message);
+
+        // TODO: check contacts permission
 
         mRecyclerView.setVisibility(View.GONE);
         mMessage.setVisibility(View.VISIBLE);
