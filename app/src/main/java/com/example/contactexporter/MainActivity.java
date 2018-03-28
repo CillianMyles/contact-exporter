@@ -39,18 +39,6 @@ public class MainActivity extends AppCompatActivity {
     private TextView mMessage;
     private ContactsAdapter mAdapter;
 
-    private Observer<List<Contact>> mObserver = new Observer<List<Contact>>() {
-        @Override
-        public void onChanged(@Nullable List<Contact> pContacts) {
-            boolean lValidResults = pContacts != null && !pContacts.isEmpty();
-            mRecyclerView.setVisibility(lValidResults ? View.VISIBLE : View.GONE);
-            mMessage.setVisibility(lValidResults ? View.GONE : View.VISIBLE);
-            if (lValidResults) {
-                mAdapter.swap(pContacts);
-            }
-        }
-    };
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -108,6 +96,18 @@ public class MainActivity extends AppCompatActivity {
                 .getData()
                 .observe(this, mObserver);
     }
+
+    private Observer<List<Contact>> mObserver = new Observer<List<Contact>>() {
+        @Override
+        public void onChanged(@Nullable List<Contact> pContacts) {
+            boolean lValidResults = pContacts != null && !pContacts.isEmpty();
+            mRecyclerView.setVisibility(lValidResults ? View.VISIBLE : View.GONE);
+            mMessage.setVisibility(lValidResults ? View.GONE : View.VISIBLE);
+            if (lValidResults) {
+                mAdapter.swap(pContacts);
+            }
+        }
+    };
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
