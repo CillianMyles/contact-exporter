@@ -39,21 +39,40 @@ public class MainActivity extends AppCompatActivity {
     private TextView mMessage;
     private ContactsAdapter mAdapter;
 
+    private Observer<List<Contact>> mObserver = new Observer<List<Contact>>() {
+        @Override
+        public void onChanged(@Nullable List<Contact> pContacts) {
+            boolean lValidResults = pContacts != null && !pContacts.isEmpty();
+            mRecyclerView.setVisibility(lValidResults ? View.VISIBLE : View.GONE);
+            mMessage.setVisibility(lValidResults ? View.GONE : View.VISIBLE);
+            if (lValidResults) {
+                mAdapter.swap(pContacts);
+            }
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        bindViews();
+        initRecyclerView();
+        checkPermissionAndLoad();
+    }
 
-        // Bind views.
+    private void bindViews() {
         mBaseLayout = findViewById(R.id.base_layout);
         mRecyclerView = findViewById(R.id.recycler_view);
         mMessage = findViewById(R.id.message);
+    }
 
-        // Initialise RV stuff.
+    private void initRecyclerView() {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mAdapter = new ContactsAdapter(this);
         mRecyclerView.setAdapter(mAdapter);
+    }
 
+    private void checkPermissionAndLoad() {
         // Check contacts permission.
         if (ActivityCompat.checkSelfPermission(this, READ_CONTACTS) == PERMISSION_GRANTED) {
 
@@ -83,6 +102,13 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private void loadContacts() {
+        ViewModelProviders.of(this)
+                .get(ContactsViewModel.class)
+                .getData()
+                .observe(this, mObserver);
+    }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         switch (requestCode) {
@@ -107,21 +133,4 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
-
-    private void loadContacts() {
-        ContactsViewModel lModel = ViewModelProviders.of(this).get(ContactsViewModel.class);
-        lModel.getData().observe(this, mObserver);
-    }
-
-    private Observer<List<Contact>> mObserver = new Observer<List<Contact>>() {
-        @Override
-        public void onChanged(@Nullable List<Contact> pContacts) {
-            boolean lValidResults = pContacts != null && !pContacts.isEmpty();
-            mRecyclerView.setVisibility(lValidResults ? View.VISIBLE : View.GONE);
-            mMessage.setVisibility(lValidResults ? View.GONE : View.VISIBLE);
-            if (lValidResults) {
-                mAdapter.swap(pContacts);
-            }
-        }
-    };
 }
