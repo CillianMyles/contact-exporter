@@ -24,10 +24,11 @@ public class ContactsLiveData extends LiveData<List<Contact>> {
         new LoadTask().execute(); // TODO: LoadTask to be static or singleton !?
     }
 
-    private class LoadTask extends AsyncTask<Void, Void, List<Contact>> {
+    private class LoadTask extends AsyncTask<String, Void, List<Contact>> {
 
         @Override
-        protected List<Contact> doInBackground(Void... pVoids) {
+        protected List<Contact> doInBackground(String... pSearchArray) {
+            final String lSearch = pSearchArray[0];
             // TODO: query phone contacts in db.
             return DummyData.list();
         }
