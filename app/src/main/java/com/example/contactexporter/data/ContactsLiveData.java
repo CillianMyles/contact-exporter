@@ -28,7 +28,7 @@ public class ContactsLiveData extends LiveData<List<Contact>> {
 
         @Override
         protected List<Contact> doInBackground(String... pSearchArray) {
-            final String lSearch = pSearchArray[0];
+            //final String lSearch = pSearchArray[0];
             // TODO: query phone contacts in db.
             return DummyData.list();
         }
