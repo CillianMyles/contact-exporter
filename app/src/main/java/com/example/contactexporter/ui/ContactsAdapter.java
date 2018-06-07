@@ -21,36 +21,36 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
 
     private static final int CONTACT_ITEM = R.layout.contact_list_item;
 
-    private final Context mContext;
-    private final LayoutInflater mInflater;
-    private List<Contact> mData;
+    private final Context context;
+    private final LayoutInflater inflater;
+    private List<Contact> data;
 
-    public ContactsAdapter(Context pContext) {
-        mContext = pContext;
-        mInflater = LayoutInflater.from(pContext);
+    public ContactsAdapter(Context context) {
+        this.context = context;
+        inflater = LayoutInflater.from(context);
     }
 
     @Override
     public ContactViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new ContactViewHolder(mInflater.inflate(CONTACT_ITEM, parent, false));
+        return new ContactViewHolder(inflater.inflate(CONTACT_ITEM, parent, false));
     }
 
     @Override
     public void onBindViewHolder(ContactViewHolder holder, int position) {
-        holder.bind(mData.get(position));
+        holder.bind(data.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return mData != null ? mData.size() : 0;
+        return data != null ? data.size() : 0;
     }
 
-    public List<Contact> swap(List<Contact> pNewList) {
-        List<Contact> lOldList = mData;
+    public List<Contact> swap(List<Contact> newList) {
+        List<Contact> oldList = data;
         // Reset all the class members.
-        mData = pNewList;
+        data = newList;
         // Update the UI.
-        if (pNewList != null) {
+        if (newList != null) {
             // Notify observers about the new list items.
             notifyDataSetChanged();
         } else {
@@ -58,26 +58,26 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
             // notifyDataSetInvalidated();
             notifyItemRangeRemoved(0, getItemCount());
         }
-        return lOldList;
+        return oldList;
     }
 
     class ContactViewHolder extends RecyclerView.ViewHolder {
 
-        private ImageView mImage;
-        private TextView mInitials;
-        private TextView mName;
+        private ImageView image;
+        private TextView initials;
+        private TextView name;
 
         ContactViewHolder(View itemView) {
             super(itemView);
-            mImage = itemView.findViewById(R.id.image);
-            mInitials = itemView.findViewById(R.id.initials);
-            mName = itemView.findViewById(R.id.name);
+            image = itemView.findViewById(R.id.image);
+            initials = itemView.findViewById(R.id.initials);
+            name = itemView.findViewById(R.id.name);
         }
 
         private void bind(Contact pContact) {
             // TODO: image
-            mInitials.setText(pContact.initials());
-            mName.setText(pContact.fullName());
+            initials.setText(pContact.initials());
+            name.setText(pContact.fullName());
         }
     }
 }

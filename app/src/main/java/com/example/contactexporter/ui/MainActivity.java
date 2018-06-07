@@ -35,10 +35,10 @@ public class MainActivity extends AppCompatActivity {
 
     private static final int REQUEST_CODE_CONTACTS = 0;
 
-    private ConstraintLayout mBaseLayout;
-    private RecyclerView mRecyclerView;
-    private TextView mMessage;
-    private ContactsAdapter mAdapter;
+    private ConstraintLayout baseLayout;
+    private RecyclerView recyclerView;
+    private TextView message;
+    private ContactsAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,15 +50,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void bindViews() {
-        mBaseLayout = findViewById(R.id.base_layout);
-        mRecyclerView = findViewById(R.id.recycler_view);
-        mMessage = findViewById(R.id.message);
+        baseLayout = findViewById(R.id.base_layout);
+        recyclerView = findViewById(R.id.recycler_view);
+        message = findViewById(R.id.message);
     }
 
     private void initRecyclerView() {
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mAdapter = new ContactsAdapter(this);
-        mRecyclerView.setAdapter(mAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        adapter = new ContactsAdapter(this);
+        recyclerView.setAdapter(adapter);
     }
 
     private void checkPermissionAndLoad() {
@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
 
             // Permission granted previously.
             Log.d(TAG, "Permission granted previously.");
-            mMessage.setText(R.string.no_results);
+            message.setText(R.string.no_results);
 
             // Query contacts.
             loadContacts();
@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
 
             // Permission is not granted.
             Log.d(TAG, "Permission is not granted.");
-            mMessage.setText(R.string.no_permission);
+            message.setText(R.string.no_permission);
 
             // Should we show an explanation?
             if (ActivityCompat.shouldShowRequestPermissionRationale(this, READ_CONTACTS)) {
@@ -95,17 +95,17 @@ public class MainActivity extends AppCompatActivity {
         ViewModelProviders.of(this)
                 .get(ContactsViewModel.class)
                 .getData()
-                .observe(this, mObserver);
+                .observe(this, observer);
     }
 
-    private Observer<List<Contact>> mObserver = new Observer<List<Contact>>() {
+    private Observer<List<Contact>> observer = new Observer<List<Contact>>() {
         @Override
-        public void onChanged(@Nullable List<Contact> pContacts) {
-            boolean lValidResults = pContacts != null && !pContacts.isEmpty();
-            mRecyclerView.setVisibility(lValidResults ? View.VISIBLE : View.GONE);
-            mMessage.setVisibility(lValidResults ? View.GONE : View.VISIBLE);
-            if (lValidResults) {
-                mAdapter.swap(pContacts);
+        public void onChanged(@Nullable List<Contact> contacts) {
+            boolean validResults = contacts != null && !contacts.isEmpty();
+            recyclerView.setVisibility(validResults ? View.VISIBLE : View.GONE);
+            message.setVisibility(validResults ? View.GONE : View.VISIBLE);
+            if (validResults) {
+                adapter.swap(contacts);
             }
         }
     };
@@ -118,8 +118,8 @@ public class MainActivity extends AppCompatActivity {
                 if (grantResults.length > 0 && grantResults[0] == PERMISSION_GRANTED) {
                     // Contacts permission granted.
                     Log.d(TAG, "Contacts permission granted.");
-                    mMessage.setText(R.string.no_results);
-                    Snackbar.make(mBaseLayout, R.string.permission_granted, LENGTH_LONG).show();
+                    message.setText(R.string.no_results);
+                    Snackbar.make(baseLayout, R.string.permission_granted, LENGTH_LONG).show();
 
                     // Query contacts.
                     loadContacts();
@@ -127,8 +127,8 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     // Contacts permission denied.
                     Log.d(TAG, "Contacts permission denied.");
-                    mMessage.setText(R.string.no_permission);
-                    Snackbar.make(mBaseLayout, R.string.permission_denied, LENGTH_LONG).show();
+                    message.setText(R.string.no_permission);
+                    Snackbar.make(baseLayout, R.string.permission_denied, LENGTH_LONG).show();
                 }
                 break;
             }

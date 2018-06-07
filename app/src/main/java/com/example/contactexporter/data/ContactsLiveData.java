@@ -14,10 +14,10 @@ import java.util.List;
  */
 public class ContactsLiveData extends LiveData<List<Contact>> {
 
-    private final Context mContext;
+    private final Context context;
 
-    public ContactsLiveData(Context pContext) {
-        mContext = pContext;
+    public ContactsLiveData(Context context) {
+        this.context = context;
         loadData();
     }
 
@@ -29,15 +29,15 @@ public class ContactsLiveData extends LiveData<List<Contact>> {
     private class LoadTask extends AsyncTask<String, Void, List<Contact>> {
 
         @Override
-        protected List<Contact> doInBackground(String... pSearchArray) {
-            //final String lSearch = pSearchArray[0];
+        protected List<Contact> doInBackground(String... searchArray) {
+            //final String search = searchArray[0];
             // TODO: query phone contacts in db.
             return DummyData.list();
         }
 
         @Override
-        protected void onPostExecute(List<Contact> pContacts) {
-            setValue(pContacts);
+        protected void onPostExecute(List<Contact> contacts) {
+            setValue(contacts);
         }
     }
 }

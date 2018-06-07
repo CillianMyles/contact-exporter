@@ -11,57 +11,57 @@ import java.util.Map;
  */
 public class Contact implements Serializable {
 
-    private final long mId;
-    private final Map<String, String> mData;
+    private final long id;
+    private final Map<String, String> data;
 
-    public Contact(long pId, Map<String, String> pData) {
-        mId = pId;
-        mData = pData;
+    public Contact(long id, Map<String, String> data) {
+        this.id = id;
+        this.data = data;
     }
 
     public long getId() {
-        return mId;
+        return id;
     }
 
     public Map<String, String> getData() {
-        return mData;
+        return data;
     }
 
     public String fullName() {
-        if (mData == null || mData.isEmpty()) {
+        if (data == null || data.isEmpty()) {
             return "";
         }
 
-        String lFirst = firstName();
-        String lLast = lastName();
+        String first = firstName();
+        String last = lastName();
 
-        if (!TextUtils.isEmpty(lFirst) && !TextUtils.isEmpty(lLast)) {
-            return lFirst + " " + lLast;
-        } else if (!TextUtils.isEmpty(lLast)) {
-            return lLast;
+        if (!TextUtils.isEmpty(first) && !TextUtils.isEmpty(last)) {
+            return first + " " + last;
+        } else if (!TextUtils.isEmpty(last)) {
+            return last;
         } else {
-            return lFirst;
+            return first;
         }
     }
 
     public String initials() {
-        if (mData == null || mData.isEmpty()) {
+        if (data == null || data.isEmpty()) {
             return "";
         }
 
-        String lFirst = firstName();
-        String lLast = lastName();
+        String first = firstName();
+        String last = lastName();
 
-        final String lInitials;
-        if (!TextUtils.isEmpty(lFirst) && !TextUtils.isEmpty(lLast)) {
-            lInitials = lFirst.substring(0, 1) + lLast.substring(0, 1);
-        } else if (!TextUtils.isEmpty(lLast)) {
-            lInitials = lLast.substring(0, 1);
+        final String initials;
+        if (!TextUtils.isEmpty(first) && !TextUtils.isEmpty(last)) {
+            initials = first.substring(0, 1) + last.substring(0, 1);
+        } else if (!TextUtils.isEmpty(last)) {
+            initials = last.substring(0, 1);
         } else {
-            lInitials = lFirst.substring(0, 1);
+            initials = first.substring(0, 1);
         }
 
-        return lInitials;
+        return initials;
     }
 
     private String firstName() {
@@ -72,12 +72,12 @@ public class Contact implements Serializable {
         return getValue("last_name");
     }
 
-    private String getValue(String pKey) {
-        if (mData == null || mData.isEmpty() || TextUtils.isEmpty(pKey)) {
+    private String getValue(String key) {
+        if (data == null || data.isEmpty() || TextUtils.isEmpty(key)) {
             return "";
         }
 
-        final String lValue = mData.get(pKey);
-        return !TextUtils.isEmpty(lValue) ? lValue : "";
+        final String value = data.get(key);
+        return !TextUtils.isEmpty(value) ? value : "";
     }
 }
