@@ -1,4 +1,4 @@
-package com.example.contactexporter;
+package com.example.contactexporter.ui;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.contactexporter.R;
 import com.example.contactexporter.data.Contact;
 import com.example.contactexporter.data.ContactsViewModel;
 

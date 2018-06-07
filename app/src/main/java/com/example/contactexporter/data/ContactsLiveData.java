@@ -4,6 +4,8 @@ import android.arch.lifecycle.LiveData;
 import android.content.Context;
 import android.os.AsyncTask;
 
+import com.example.contactexporter.data.dummy.DummyData;
+
 import java.util.List;
 
 /**

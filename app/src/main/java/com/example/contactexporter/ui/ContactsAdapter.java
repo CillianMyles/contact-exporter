@@ -1,4 +1,4 @@
-package com.example.contactexporter;
+package com.example.contactexporter.ui;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.contactexporter.R;
 import com.example.contactexporter.data.Contact;
 
 import java.util.List;

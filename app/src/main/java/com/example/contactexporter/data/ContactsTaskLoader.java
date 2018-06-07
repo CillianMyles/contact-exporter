@@ -3,6 +3,8 @@ package com.example.contactexporter.data;
 import android.content.Context;
 import android.support.v4.content.AsyncTaskLoader;
 
+import com.example.contactexporter.data.dummy.DummyData;
+
 import java.util.List;
 
 /**
