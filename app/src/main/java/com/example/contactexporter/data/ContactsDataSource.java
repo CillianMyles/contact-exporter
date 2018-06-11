@@ -12,9 +12,9 @@ public interface ContactsDataSource {
 
     interface LoadCallback {
 
-        void onContactsLoaded(List<Contact> contacts);
+        void onLoaded(List<Contact> contacts);
 
-        void onDataNotAvailable(String message);
+        void onError(String message);
     }
 
     void loadAll(@NonNull LoadCallback callback);

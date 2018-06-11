@@ -44,12 +44,12 @@ public class ContactsLiveData extends LiveData<List<Contact>> {
     private ContactsRepository.LoadCallback callback = new ContactsRepository.LoadCallback() {
 
         @Override
-        public void onContactsLoaded(List<Contact> data) {
+        public void onLoaded(List<Contact> data) {
             setValue(data);
         }
 
         @Override
-        public void onDataNotAvailable(String message) {
+        public void onError(String message) {
             setValue(null);
         }
     };
