@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
     private void loadContacts() {
         ViewModelProviders.of(this)
                 .get(ContactsViewModel.class)
-                .getData()
+                .getLiveData()
                 .observe(this, observer);
     }
 

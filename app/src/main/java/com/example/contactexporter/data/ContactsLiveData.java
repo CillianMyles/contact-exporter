@@ -1,10 +1,10 @@
 package com.example.contactexporter.data;
 
+import android.app.Application;
 import android.arch.lifecycle.LiveData;
-import android.content.Context;
-import android.os.AsyncTask;
 
-import com.example.contactexporter.data.dummy.DummyData;
+import com.example.contactexporter.data.dummy.DummyDataSource;
+import com.example.contactexporter.data.local.LocalDataSource;
 
 import java.util.List;
 
@@ -14,30 +14,43 @@ import java.util.List;
  */
 public class ContactsLiveData extends LiveData<List<Contact>> {
 
-    private final Context context;
+    private final ContactsRepository repository;
 
-    public ContactsLiveData(Context context) {
+    private final Application context;
+
+    private static volatile ContactsLiveData INSTANCE;
+
+    private static final Object lock = new Object();
+
+    public static ContactsLiveData getInstance(Application context) {
+        if (INSTANCE == null) {
+            synchronized (lock) {
+                if (INSTANCE == null) {
+                    INSTANCE = new ContactsLiveData(context);
+                }
+            }
+        }
+        return INSTANCE;
+    }
+
+    private ContactsLiveData(Application context) {
         this.context = context;
-        loadData();
+        repository = ContactsRepository.getInstance(
+                LocalDataSource.getInstance(),
+                DummyDataSource.getInstance());
+        repository.loadAll(callback);
     }
 
-    private void loadData() {
-        // TODO: pass search into task/query !?
-        new LoadTask().execute(); // TODO: LoadTask to be static or singleton !?
-    }
-
-    private class LoadTask extends AsyncTask<String, Void, List<Contact>> {
+    private ContactsRepository.LoadCallback callback = new ContactsRepository.LoadCallback() {
 
         @Override
-        protected List<Contact> doInBackground(String... searchArray) {
-            //final String search = searchArray[0];
-            // TODO: query phone contacts in db.
-            return DummyData.list();
+        public void onContactsLoaded(List<Contact> data) {
+            setValue(data);
         }
 
         @Override
-        protected void onPostExecute(List<Contact> contacts) {
-            setValue(contacts);
+        public void onDataNotAvailable(String message) {
+            setValue(null);
         }
-    }
+    };
 }

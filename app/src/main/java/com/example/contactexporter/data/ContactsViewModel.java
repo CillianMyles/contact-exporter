@@ -13,14 +13,14 @@ import java.util.List;
  */
 public class ContactsViewModel extends AndroidViewModel {
 
-    private final ContactsLiveData data;
+    private final ContactsLiveData liveData;
 
     public ContactsViewModel(@NonNull Application application) {
         super(application);
-        data = new ContactsLiveData(application);
+        liveData = ContactsLiveData.getInstance(application);
     }
 
-    public LiveData<List<Contact>> getData() {
-        return data;
+    public LiveData<List<Contact>> getLiveData() {
+        return liveData;
     }
 }
