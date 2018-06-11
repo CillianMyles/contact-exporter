@@ -23,4 +23,12 @@ public class ContactsViewModel extends AndroidViewModel {
     public LiveData<List<Contact>> getLiveData() {
         return liveData;
     }
+
+    public void search(@NonNull String name) {
+        liveData.search(name);
+    }
+
+    public void reset() {
+        liveData.reset();
+    }
 }

@@ -16,11 +16,11 @@ public class ContactsRepository implements ContactsDataSource {
     private final LocalDataSource localSource;
     private final DummyDataSource dummySource;
 
-    private static final Object sLock = new Object();
+    private static final Object lock = new Object();
 
     public static ContactsRepository getInstance(LocalDataSource local, DummyDataSource dummy) {
         if (INSTANCE == null) {
-            synchronized (sLock) {
+            synchronized (lock) {
                 if (INSTANCE == null) {
                     INSTANCE = new ContactsRepository(local, dummy);
                 }
@@ -39,6 +39,11 @@ public class ContactsRepository implements ContactsDataSource {
 
     @Override
     public void loadAll(@NonNull LoadCallback callback) {
+        dummySource.loadAll(callback); // TODO: change to LocalDataSource
+    }
+
+    @Override
+    public void search(@NonNull String name, @NonNull LoadCallback callback) {
         dummySource.loadAll(callback); // TODO: change to LocalDataSource
     }
 }

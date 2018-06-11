@@ -18,4 +18,6 @@ public interface ContactsDataSource {
     }
 
     void loadAll(@NonNull LoadCallback callback);
+
+    void search(@NonNull String name, @NonNull LoadCallback callback);
 }

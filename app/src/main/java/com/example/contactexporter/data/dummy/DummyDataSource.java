@@ -33,4 +33,9 @@ public class DummyDataSource implements ContactsDataSource {
     public void loadAll(@NonNull LoadCallback callback) {
         callback.onLoaded(DummyData.list());
     }
+
+    @Override
+    public void search(@NonNull String name, @NonNull LoadCallback callback) {
+        callback.onLoaded(DummyData.list());
+    }
 }

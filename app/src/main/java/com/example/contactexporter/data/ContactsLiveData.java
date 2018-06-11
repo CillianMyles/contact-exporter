@@ -14,12 +14,16 @@ import java.util.List;
  */
 public class ContactsLiveData extends LiveData<List<Contact>> {
 
-    private final ContactsRepository repository;
+    public static final int MODE_ALL = 0;
+    public static final int MODE_SEARCH = 1;
+
+    private static int mode = MODE_ALL;
+    private static final String NO_SEARCH = null;
 
     private final Application context;
+    private final ContactsRepository repository;
 
     private static volatile ContactsLiveData INSTANCE;
-
     private static final Object lock = new Object();
 
     public static ContactsLiveData getInstance(Application context) {
@@ -38,6 +42,16 @@ public class ContactsLiveData extends LiveData<List<Contact>> {
         repository = ContactsRepository.getInstance(
                 LocalDataSource.getInstance(),
                 DummyDataSource.getInstance());
+        repository.loadAll(callback);
+    }
+
+    public void search(String name) {
+        mode = MODE_SEARCH;
+        repository.search(name, callback);
+    }
+
+    public void reset() {
+        mode = MODE_ALL;
         repository.loadAll(callback);
     }
 

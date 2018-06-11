@@ -33,4 +33,9 @@ public class LocalDataSource implements ContactsDataSource {
     public void loadAll(@NonNull LoadCallback callback) {
         // TODO: implement !!
     }
+
+    @Override
+    public void search(@NonNull String name, @NonNull LoadCallback callback) {
+        // TODO: implement !!
+    }
 }
