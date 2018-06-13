@@ -26,7 +26,7 @@ public class DummyData {
     }
 
     public static List<Contact> list() {
-        return Arrays.asList(ELON, HILARY, DONALD);
+        return Arrays.asList(ELON, DONALD, HILARY);
     }
 
     private static final Contact ELON;
