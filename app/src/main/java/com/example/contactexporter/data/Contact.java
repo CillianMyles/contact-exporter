@@ -1,12 +1,10 @@
 package com.example.contactexporter.data;
 
-import android.content.Context;
 import android.content.res.Resources;
-import android.content.res.TypedArray;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
 
-import com.example.contactexporter.R;
+import com.example.contactexporter.util.PhotoHelper;
 
 import java.io.Serializable;
 import java.util.Map;
@@ -70,12 +68,8 @@ public class Contact implements Serializable {
         return initials;
     }
 
-    public int backgroundColor(@NonNull Context context) {
-        final Resources resources = context.getResources();
-        final int defaultColor = resources.getColor(R.color.letter_tile_default_color);
-        final TypedArray colors = resources.obtainTypedArray(R.array.letter_tile_colors); // TODO: #recycle
-        final int color = Math.abs(identifier().hashCode()) % colors.length();
-        return colors.getColor(color, defaultColor);
+    public int backgroundColor(@NonNull Resources resources) {
+        return PhotoHelper.backgroundColor(resources, identifier());
     }
 
     public String photoUri() {

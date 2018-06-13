@@ -5,9 +5,9 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
-    <color name="letter_tile_default_color">#cccccc</color>
+    <color name="contact_letter_tile_default">#cccccc</color>
 
-    <array name="letter_tile_colors">
+    <array name="contact_letter_tile_colors">
         <item>#DB4437</item>
         <item>#E91E63</item>
         <item>#9C27B0</item>

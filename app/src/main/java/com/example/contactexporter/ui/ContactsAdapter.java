@@ -1,6 +1,7 @@
 package com.example.contactexporter.ui;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -25,11 +26,13 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
 
     private final Context context;
     private final LayoutInflater inflater;
+    private final Resources resources;
     private List<Contact> data;
 
     public ContactsAdapter(Context context) {
         this.context = context;
         inflater = LayoutInflater.from(context);
+        resources = context.getResources();
     }
 
     @Override
@@ -77,7 +80,7 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
         }
 
         private void bind(Contact contact) {
-            image.setBackgroundColor(contact.backgroundColor(context));
+            image.setBackgroundColor(contact.backgroundColor(resources));
             if (!TextUtils.isEmpty(contact.photoUri())) {
                 final int pixels = context.getResources().getInteger(R.integer.contact_photo_pixels);
                 Picasso.get()
