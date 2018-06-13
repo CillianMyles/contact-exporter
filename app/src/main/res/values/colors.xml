@@ -11,7 +11,7 @@
     <color name="colorDivider">#BDBDBD</color>
     <color name="colorLightText">#FFFFFF</color>
 
-    <color name="contact_letter_tile_default">#cccccc</color>
+    <color name="contact_letter_tile_default">#CCCCCC</color>
 
     <array name="contact_letter_tile_colors">
         <item>#DB4437</item>

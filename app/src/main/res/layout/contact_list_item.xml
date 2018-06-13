@@ -7,10 +7,10 @@
     android:layout_height="wrap_content">
 
     <FrameLayout
-        android:id="@+id/icon"
+        android:id="@+id/tile"
         android:layout_width="@dimen/contact_photo_diameter"
         android:layout_height="@dimen/contact_photo_diameter"
-        android:layout_margin="@dimen/activity_horizontal_margin">
+        android:layout_margin="@dimen/contact_photo_list_padding">
 
         <com.makeramen.roundedimageview.RoundedImageView
             android:id="@+id/image"
@@ -36,14 +36,28 @@
 
     </FrameLayout>
 
+    <android.support.v7.widget.AppCompatCheckBox
+        android:id="@+id/selected"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="@dimen/contact_photo_list_padding"
+        android:layout_marginRight="@dimen/contact_photo_list_padding"/>
+
     <TextView
         android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_toEndOf="@+id/icon"
-        android:layout_toRightOf="@+id/icon"
+        android:layout_toEndOf="@+id/tile"
+        android:layout_toLeftOf="@+id/selected"
+        android:layout_toRightOf="@+id/tile"
+        android:layout_toStartOf="@+id/selected"
+        android:ellipsize="end"
         android:gravity="center_vertical"
+        android:maxLines="1"
         android:textColor="@color/colorPrimaryText"
         android:textSize="@dimen/contact_name_text_size"
         tools:text="Elon Musk"/>
