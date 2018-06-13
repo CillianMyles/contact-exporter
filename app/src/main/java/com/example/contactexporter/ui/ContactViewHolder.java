@@ -7,7 +7,6 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -48,17 +47,9 @@ public class ContactViewHolder extends RecyclerView.ViewHolder {
         }
         initials.setText(contact.initials());
         name.setText(contact.fullName());
-        itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                selected.toggle();
-            }
-        });
-        selected.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
-                Log.e(TAG, "id: " + contact.getId() + " - isChecked: " + isChecked); // TODO: remove
-            }
+        itemView.setOnClickListener(view -> selected.toggle());
+        selected.setOnCheckedChangeListener((compoundButton, isChecked) -> {
+            Log.e(TAG, "id: " + contact.getId() + " - isChecked: " + isChecked); // TODO: remove
         });
     }
 }
