@@ -24,11 +24,15 @@ public class ContactsViewModel extends AndroidViewModel {
         return liveData;
     }
 
+    public void reset() {
+        liveData.reset();
+    }
+
     public void search(@NonNull String name) {
         liveData.search(name);
     }
 
-    public void reset() {
-        liveData.reset();
+    public void letter(@NonNull String letter) {
+        liveData.letter(letter);
     }
 }

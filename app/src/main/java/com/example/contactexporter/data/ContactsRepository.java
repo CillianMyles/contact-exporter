@@ -44,6 +44,11 @@ public class ContactsRepository implements ContactsDataSource {
 
     @Override
     public void search(@NonNull String name, @NonNull LoadCallback callback) {
-        dummySource.loadAll(callback); // TODO: change to LocalDataSource
+        dummySource.search(name, callback); // TODO: change to LocalDataSource
+    }
+
+    @Override
+    public void letter(@NonNull String letter, @NonNull LoadCallback callback) {
+        dummySource.letter(letter, callback); // TODO: change to LocalDataSource
     }
 }

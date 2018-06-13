@@ -16,11 +16,12 @@ public class ContactsLiveData extends LiveData<List<Contact>> {
 
     public static final int MODE_ALL = 0;
     public static final int MODE_SEARCH = 1;
+    public static final int MODE_LETTER = 2;
 
     private static int mode = MODE_ALL;
     private static final String NO_SEARCH = null;
 
-    private final Application context;
+    private final Application context; // TODO: remove!?
     private final ContactsRepository repository;
 
     private static volatile ContactsLiveData INSTANCE;
@@ -42,6 +43,11 @@ public class ContactsLiveData extends LiveData<List<Contact>> {
         repository = ContactsRepository.getInstance(
                 LocalDataSource.getInstance(),
                 DummyDataSource.getInstance());
+        reset();
+    }
+
+    public void reset() {
+        mode = MODE_ALL;
         repository.loadAll(callback);
     }
 
@@ -50,9 +56,9 @@ public class ContactsLiveData extends LiveData<List<Contact>> {
         repository.search(name, callback);
     }
 
-    public void reset() {
-        mode = MODE_ALL;
-        repository.loadAll(callback);
+    public void letter(String letter) {
+        mode = MODE_LETTER;
+        repository.letter(letter, callback);
     }
 
     private ContactsRepository.LoadCallback callback = new ContactsRepository.LoadCallback() {

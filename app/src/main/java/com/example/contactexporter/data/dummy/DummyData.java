@@ -11,7 +11,7 @@ import java.util.Map;
  * Created by Cillian Myles on 27/03/2018.
  * Copyright (c) 2018 Cillian Myles. All rights reserved.
  */
-@SuppressWarnings("SpellCheckingInspection")
+@SuppressWarnings({"SpellCheckingInspection", "unused"})
 public class DummyData {
 
     public static Contact random() {
