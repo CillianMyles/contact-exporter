@@ -2,6 +2,7 @@ package com.example.contactexporter.ui;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 
 import com.example.contactexporter.R;
 import com.example.contactexporter.data.Contact;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -74,10 +76,18 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
             name = itemView.findViewById(R.id.name);
         }
 
-        private void bind(Contact pContact) {
-            // TODO: image
-            initials.setText(pContact.initials());
-            name.setText(pContact.fullName());
+        private void bind(Contact contact) {
+            image.setBackgroundColor(contact.backgroundColor(context));
+            if (!TextUtils.isEmpty(contact.photoUri())) {
+                final int pixels = context.getResources().getInteger(R.integer.contact_photo_pixels);
+                Picasso.get()
+                        .load(contact.photoUri())
+                        .noPlaceholder()
+                        .resize(pixels, pixels)
+                        .into(image);
+            }
+            initials.setText(contact.initials());
+            name.setText(contact.fullName());
         }
     }
 }

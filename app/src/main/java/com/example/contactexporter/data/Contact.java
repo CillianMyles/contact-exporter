@@ -1,6 +1,12 @@
 package com.example.contactexporter.data;
 
+import android.content.Context;
+import android.content.res.Resources;
+import android.content.res.TypedArray;
+import android.support.annotation.NonNull;
 import android.text.TextUtils;
+
+import com.example.contactexporter.R;
 
 import java.io.Serializable;
 import java.util.Map;
@@ -64,12 +70,28 @@ public class Contact implements Serializable {
         return initials;
     }
 
-    private String firstName() {
+    public int backgroundColor(@NonNull Context context) {
+        final Resources resources = context.getResources();
+        final int defaultColor = resources.getColor(R.color.letter_tile_default_color);
+        final TypedArray colors = resources.obtainTypedArray(R.array.letter_tile_colors); // TODO: #recycle
+        final int color = Math.abs(identifier().hashCode()) % colors.length();
+        return colors.getColor(color, defaultColor);
+    }
+
+    public String photoUri() {
+        return getValue("photo_url");
+    }
+
+    public String firstName() {
         return getValue("first_name");
     }
 
-    private String lastName() {
+    public String lastName() {
         return getValue("last_name");
+    }
+
+    private String identifier() {
+        return fullName();
     }
 
     private String getValue(String key) {
