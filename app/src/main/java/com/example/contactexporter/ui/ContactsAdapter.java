@@ -1,13 +1,10 @@
 package com.example.contactexporter.ui;
 
 import android.content.Context;
-import android.content.res.Resources;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
-
-import com.example.contactexporter.R;
-import com.example.contactexporter.data.Contact;
 
 import java.util.List;
 
@@ -15,29 +12,33 @@ import java.util.List;
  * Created by Cillian Myles on 27/03/2018.
  * Copyright (c) 2018 Cillian Myles. All rights reserved.
  */
-public class ContactsAdapter extends RecyclerView.Adapter<ContactViewHolder> {
-
-    private static final int CONTACT_ITEM = R.layout.contact_list_item;
+public class ContactsAdapter extends RecyclerView.Adapter<ViewItemBinder> {
 
     private final Context context;
     private final LayoutInflater inflater;
-    private final Resources resources;
-    private List<Contact> data;
+    private List<ViewItem> data;
 
-    public ContactsAdapter(Context context) {
+    ContactsAdapter(Context context) {
         this.context = context;
         inflater = LayoutInflater.from(context);
-        resources = context.getResources();
+    }
+
+    @NonNull
+    @Override
+    public ViewItemBinder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        switch (viewType) {
+            case ViewItem.TYPE_CONTACT: {
+                return ContactViewItemBinder.inflate(inflater, parent);
+            }
+        }
+        throw new IllegalStateException("View type not supported.");
     }
 
     @Override
-    public ContactViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new ContactViewHolder(inflater.inflate(CONTACT_ITEM, parent, false));
-    }
-
-    @Override
-    public void onBindViewHolder(ContactViewHolder holder, int position) {
-        holder.bind(resources, data.get(position));
+    @SuppressWarnings("unchecked")
+    public void onBindViewHolder(@NonNull ViewItemBinder holder, int position) {
+        holder.setItem(getItem(position));
+        holder.bind(position, context);
     }
 
     @Override
@@ -45,13 +46,24 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactViewHolder> {
         return data != null ? data.size() : 0;
     }
 
-    public List<Contact> swap(List<Contact> newList) {
-        List<Contact> oldList = data;
+    @Override
+    public int getItemViewType(int position) {
+        ViewItem item = getItem(position);
+        return item.getItemViewType();
+    }
+
+    private ViewItem getItem(int position) {
+        return data.get(position);
+    }
+
+    @SuppressWarnings("UnusedReturnValue")
+    public List<ViewItem> swap(List<ViewItem> newList) {
+        List<ViewItem> oldList = data;
         // Reset all the class members.
         data = newList;
         // Update the UI.
         if (newList != null) {
-            // Notify observers about the new list items.
+            // Notify observers about the new contacts items.
             notifyDataSetChanged();
         } else {
             // Notify the observers about the lack of a data set.

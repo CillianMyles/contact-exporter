@@ -16,7 +16,6 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.contactexporter.R;
-import com.example.contactexporter.data.Contact;
 import com.example.contactexporter.data.ContactsViewModel;
 
 import java.util.List;
@@ -98,9 +97,9 @@ public class MainActivity extends AppCompatActivity {
                 .observe(this, observer);
     }
 
-    private Observer<List<Contact>> observer = new Observer<List<Contact>>() {
+    private Observer<List<ViewItem>> observer = new Observer<List<ViewItem>>() {
         @Override
-        public void onChanged(@Nullable List<Contact> contacts) {
+        public void onChanged(@Nullable List<ViewItem> contacts) {
             boolean validResults = contacts != null && !contacts.isEmpty();
             recyclerView.setVisibility(validResults ? View.VISIBLE : View.GONE);
             message.setVisibility(validResults ? View.GONE : View.VISIBLE);

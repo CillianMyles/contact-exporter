@@ -1,11 +1,12 @@
 package com.example.contactexporter.ui;
 
+import android.content.Context;
 import android.content.res.Resources;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -15,19 +16,19 @@ import com.example.contactexporter.data.Contact;
 import com.squareup.picasso.Picasso;
 
 /**
- * Created by Cillian Myles on 13/06/2018.
+ * Created by Cillian Myles on 14/06/2018.
  * Copyright (c) 2018 Cillian Myles. All rights reserved.
  */
-public class ContactViewHolder extends RecyclerView.ViewHolder {
+public class ContactViewItemBinder extends ViewItemBinder<ContactViewItem> {
 
-    private static final String TAG = ContactViewHolder.class.getSimpleName();
+    private static final String TAG = ContactViewItemBinder.class.getSimpleName();
 
     private ImageView image;
     private TextView initials;
     private TextView name;
     private CheckBox selected;
 
-    public ContactViewHolder(View itemView) {
+    private ContactViewItemBinder(View itemView) {
         super(itemView);
         image = itemView.findViewById(R.id.image);
         initials = itemView.findViewById(R.id.initials);
@@ -35,7 +36,10 @@ public class ContactViewHolder extends RecyclerView.ViewHolder {
         selected = itemView.findViewById(R.id.selected);
     }
 
-    public void bind(@NonNull Resources resources, @NonNull final Contact contact) {
+    @Override
+    public void bind(int position, Context context) {
+        final Resources resources = context.getResources();
+        final Contact contact = getItem().getContact();
         image.setBackgroundColor(contact.backgroundColor(resources));
         if (!TextUtils.isEmpty(contact.photoUri())) {
             final int pixels = resources.getInteger(R.integer.contact_photo_pixels);
@@ -51,5 +55,9 @@ public class ContactViewHolder extends RecyclerView.ViewHolder {
         selected.setOnCheckedChangeListener((compoundButton, isChecked) -> {
             Log.e(TAG, "id: " + contact.getId() + " - isChecked: " + isChecked); // TODO: remove
         });
+    }
+
+    public static ViewItemBinder inflate(LayoutInflater inflater, ViewGroup parent) {
+        return new ContactViewItemBinder(inflater.inflate(R.layout.contact_list_item, parent, false));
     }
 }

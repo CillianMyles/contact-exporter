@@ -1,6 +1,8 @@
 package com.example.contactexporter.data.dummy;
 
 import com.example.contactexporter.data.Contact;
+import com.example.contactexporter.ui.ContactViewItem;
+import com.example.contactexporter.ui.ViewItem;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -25,12 +27,17 @@ public class DummyData {
         }
     }
 
-    public static List<Contact> list() {
+    public static List<Contact> contacts() {
         return Arrays.asList(ELON, DONALD, HILARY);
     }
 
-    private static final Contact ELON;
+    public static List<ViewItem> contactViewItems() {
+        return Arrays.asList(ELON_VIEW_ITEM, DONALD_VIEW_ITEM, HILARY_VIEW_ITEM);
+    }
+
     private static final int ID_ELON = 1;
+    private static final Contact ELON;
+    private static final ContactViewItem ELON_VIEW_ITEM;
 
     static {
         Map<String, String> data = new HashMap<>();
@@ -38,10 +45,12 @@ public class DummyData {
         data.put("last_name", "Musk");
         data.put("company", "SpaceX");
         ELON = new Contact(ID_ELON, data);
+        ELON_VIEW_ITEM = new ContactViewItem(ELON);
     }
 
-    private static final Contact DONALD;
     private static final int ID_DONALD = 2;
+    private static final Contact DONALD;
+    private static final ContactViewItem DONALD_VIEW_ITEM;
 
     static {
         Map<String, String> data = new HashMap<>();
@@ -49,10 +58,12 @@ public class DummyData {
         data.put("last_name", "Trump");
         data.put("company", "USA");
         DONALD = new Contact(ID_DONALD, data);
+        DONALD_VIEW_ITEM = new ContactViewItem(DONALD);
     }
 
-    private static final Contact HILARY;
     private static final int ID_HILARY = 3;
+    private static final Contact HILARY;
+    private static final ContactViewItem HILARY_VIEW_ITEM;
 
     static {
         Map<String, String> data = new HashMap<>();
@@ -60,5 +71,6 @@ public class DummyData {
         data.put("last_name", "Clinton");
         data.put("company", "Unknown");
         HILARY = new Contact(ID_HILARY, data);
+        HILARY_VIEW_ITEM = new ContactViewItem(HILARY);
     }
 }

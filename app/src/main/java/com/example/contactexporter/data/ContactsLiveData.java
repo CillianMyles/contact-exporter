@@ -5,6 +5,7 @@ import android.arch.lifecycle.LiveData;
 
 import com.example.contactexporter.data.dummy.DummyDataSource;
 import com.example.contactexporter.data.local.LocalDataSource;
+import com.example.contactexporter.ui.ViewItem;
 
 import java.util.List;
 
@@ -12,7 +13,7 @@ import java.util.List;
  * Created by Cillian Myles on 27/03/2018.
  * Copyright (c) 2018 Cillian Myles. All rights reserved.
  */
-public class ContactsLiveData extends LiveData<List<Contact>> {
+public class ContactsLiveData extends LiveData<List<ViewItem>> {
 
     public static final int MODE_ALL = 0;
     public static final int MODE_SEARCH = 1;
@@ -64,7 +65,7 @@ public class ContactsLiveData extends LiveData<List<Contact>> {
     private ContactsRepository.LoadCallback callback = new ContactsRepository.LoadCallback() {
 
         @Override
-        public void onLoaded(List<Contact> data) {
+        public void onLoaded(List<ViewItem> data) {
             setValue(data);
         }
 

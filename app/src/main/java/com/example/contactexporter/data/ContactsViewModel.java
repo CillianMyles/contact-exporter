@@ -5,6 +5,8 @@ import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
 import android.support.annotation.NonNull;
 
+import com.example.contactexporter.ui.ViewItem;
+
 import java.util.List;
 
 /**
@@ -20,7 +22,7 @@ public class ContactsViewModel extends AndroidViewModel {
         liveData = ContactsLiveData.getInstance(application);
     }
 
-    public LiveData<List<Contact>> getLiveData() {
+    public LiveData<List<ViewItem>> getLiveData() {
         return liveData;
     }
 

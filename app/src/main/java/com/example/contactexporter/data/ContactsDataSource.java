@@ -2,6 +2,8 @@ package com.example.contactexporter.data;
 
 import android.support.annotation.NonNull;
 
+import com.example.contactexporter.ui.ViewItem;
+
 import java.util.List;
 
 /**
@@ -12,7 +14,7 @@ public interface ContactsDataSource {
 
     interface LoadCallback {
 
-        void onLoaded(List<Contact> contacts);
+        void onLoaded(List<ViewItem> contacts);
 
         void onError(String message);
     }
