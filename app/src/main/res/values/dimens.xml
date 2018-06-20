@@ -4,6 +4,11 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
+    <dimen name="main_current_letter_widget_width">48dp</dimen>
+    <dimen name="main_current_letter_widget_padding">12dp</dimen>
+    <dimen name="main_letter_filters_widget_width">48dp</dimen>
+    <dimen name="main_current_letter_text_size">18sp</dimen>
+
     <dimen name="contact_photo_list_padding">16dp</dimen>
     <dimen name="contact_photo_diameter">38dp</dimen>
     <dimen name="contact_photo_radius">19dp</dimen>

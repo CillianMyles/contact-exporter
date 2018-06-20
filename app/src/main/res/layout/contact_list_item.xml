@@ -4,7 +4,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/main_current_letter_widget_width"
+    android:layout_marginStart="@dimen/main_current_letter_widget_width">
 
     <FrameLayout
         android:id="@+id/tile"

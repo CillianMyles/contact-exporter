@@ -7,5 +7,6 @@
     <string name="permission_granted">Contacts permission granted!</string>
     <string name="permission_denied">This app needs the contacts permission!</string>
     <string name="no_permission">This app needs the contacts permission to export contacts.\n\nPlease enable in settings!</string>
+    <string name="contact_letter_default">#</string>
 
 </resources>

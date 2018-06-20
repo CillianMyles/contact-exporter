@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     private ConstraintLayout baseLayout;
     private RecyclerView recyclerView;
     private TextView message;
+    private TextView currentLetter;
     private ContactsAdapter adapter;
 
     @Override
@@ -51,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
     private void bindViews() {
         baseLayout = findViewById(R.id.base_layout);
         recyclerView = findViewById(R.id.recycler_view);
+        currentLetter = findViewById(R.id.current_letter);
         message = findViewById(R.id.message);
     }
 
@@ -102,6 +104,7 @@ public class MainActivity extends AppCompatActivity {
         public void onChanged(@Nullable List<ViewItem> contacts) {
             boolean validResults = contacts != null && !contacts.isEmpty();
             recyclerView.setVisibility(validResults ? View.VISIBLE : View.GONE);
+            currentLetter.setVisibility(validResults ? View.VISIBLE : View.GONE);
             message.setVisibility(validResults ? View.GONE : View.VISIBLE);
             if (validResults) {
                 adapter.swap(contacts);

@@ -9,6 +9,22 @@
     tools:context="com.example.contactexporter.ui.MainActivity">
 
     <TextView
+        android:id="@+id/current_letter"
+        android:layout_width="@dimen/main_current_letter_widget_width"
+        android:layout_height="match_parent"
+        android:gravity="end"
+        android:padding="@dimen/main_current_letter_widget_padding"
+        android:text="@string/contact_letter_default"
+        android:textColor="@color/colorSecondaryText"
+        android:textSize="@dimen/main_current_letter_text_size"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="A"
+        tools:visibility="visible"/>
+
+    <TextView
         android:id="@+id/message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
