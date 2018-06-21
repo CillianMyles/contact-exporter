@@ -17,13 +17,19 @@ import java.util.List;
  */
 public class ContactsAdapter extends RecyclerView.Adapter<ViewItemBinder> implements INameableAdapter {
 
+    interface LetterChangedListener {
+        void showLetter(Character character);
+    }
+
     private final Context context;
     private final LayoutInflater inflater;
+    private final LetterChangedListener listener;
     private List<ViewItem> data;
 
-    ContactsAdapter(Context context) {
+    ContactsAdapter(Context context, LetterChangedListener listener) {
         this.context = context;
         inflater = LayoutInflater.from(context);
+        this.listener = listener;
     }
 
     @NonNull
@@ -82,7 +88,11 @@ public class ContactsAdapter extends RecyclerView.Adapter<ViewItemBinder> implem
             case ViewItem.TYPE_CONTACT: {
                 final ContactViewItem contactViewItem = (ContactViewItem) getItem(position);
                 final Contact contact = contactViewItem.getContact();
-                return contact != null ? contact.letter().charAt(0) : '#';
+                final Character character = contact != null ? contact.letter().charAt(0) : '#';
+                if (listener != null) {
+                    listener.showLetter(character);
+                }
+                return character;
             }
         }
         throw new IllegalStateException("View type not supported.");

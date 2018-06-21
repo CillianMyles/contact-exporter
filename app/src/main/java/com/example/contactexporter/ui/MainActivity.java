@@ -37,7 +37,7 @@ import static android.support.design.widget.Snackbar.LENGTH_LONG;
  * Created by Cillian Myles on 27/03/2018.
  * Copyright (c) 2018 Cillian Myles. All rights reserved.
  */
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements ContactsAdapter.LetterChangedListener {
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initRecyclerView() {
-        adapter = new ContactsAdapter(this);
+        adapter = new ContactsAdapter(this, this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         letterScrollBar.setIndicator(new AlphabetIndicator(this), false);
@@ -148,6 +148,12 @@ public class MainActivity extends AppCompatActivity {
                 break;
             }
         }
+    }
+
+    @Override
+    public void showLetter(Character character) {
+        // TODO: show correct letter on first load
+        currentLetter.setText(character != null ? character.toString() : null);
     }
 
     /*
