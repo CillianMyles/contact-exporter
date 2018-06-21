@@ -62,8 +62,10 @@ public class ContactsAdapter extends RecyclerView.Adapter<ViewItemBinder> implem
     }
 
     private ViewItem getItem(int position) {
-        ContactViewItem item = (ContactViewItem) data.get(position); // TODO: don't assume type!?
-        item.setListener(contactListener);
+        ViewItem item = data.get(position);
+        if (item instanceof ContactViewItem) {
+            ((ContactViewItem) item).setListener(contactListener);
+        }
         return item;
     }
 

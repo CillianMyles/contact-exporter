@@ -114,15 +114,15 @@ public class MainActivity extends AppCompatActivity
 
     private Observer<List<ViewItem>> observer = new Observer<List<ViewItem>>() {
         @Override
-        public void onChanged(@Nullable List<ViewItem> contacts) {
-            boolean validResults = contacts != null && !contacts.isEmpty();
+        public void onChanged(@Nullable List<ViewItem> items) {
+            boolean validResults = items != null && !items.isEmpty();
             recyclerView.setVisibility(validResults ? View.VISIBLE : View.GONE);
             currentLetter.setVisibility(validResults ? View.VISIBLE : View.GONE);
             letterScrollBar.setVisibility(validResults ? View.VISIBLE : View.GONE);
             message.setVisibility(validResults ? View.GONE : View.VISIBLE);
             if (validResults) {
-                adapter.swap(contacts);
-                for (ViewItem item : contacts) {
+                adapter.swap(items);
+                for (ViewItem item : items) {
                     if (item instanceof ContactViewItem) {
                         currentLetter.setText(((ContactViewItem) item).getContact().letter());
                         break;
@@ -165,7 +165,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void contactSelected(long adapterPosition, long contactId, boolean isChecked) {
         Log.e(TAG, "SELECTED EVENT - adapterPosition: " + adapterPosition
-                + " contactId: " + contactId + " - isChecked: " + isChecked); // TODO: remove
+                + " - contactId: " + contactId + " - isChecked: " + isChecked); // TODO: remove
     }
 
     /*
