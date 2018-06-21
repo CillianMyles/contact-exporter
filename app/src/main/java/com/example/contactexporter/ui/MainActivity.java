@@ -157,7 +157,7 @@ public class MainActivity extends AppCompatActivity implements ContactsAdapter.L
     }
 
     @Override
-    public void showLetter(Character character) {
+    public void letterChanged(Character character) {
         currentLetter.setText(character != null ? character.toString() : null);
     }
 

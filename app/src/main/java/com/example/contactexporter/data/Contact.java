@@ -16,6 +16,7 @@ import java.util.Map;
 public class Contact implements Serializable {
 
     public static final String LETTER_NONE = "#";
+    public static final Character CHAR_NONE = LETTER_NONE.charAt(0);
 
     private long id; // TODO: change to final
     private final Map<String, String> data;
@@ -93,6 +94,10 @@ public class Contact implements Serializable {
     public String letter() {
         final String initials = initials();
         return initials.length() >= 1 ? initials.substring(0, 1) : LETTER_NONE;
+    }
+
+    public Character character() {
+        return letter().charAt(0);
     }
 
     private String identifier() {

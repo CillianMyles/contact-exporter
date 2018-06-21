@@ -8,7 +8,7 @@ import com.example.contactexporter.data.Contact;
  */
 public class ContactViewItem extends ViewItem {
 
-    private Contact contact;
+    private final Contact contact;
 
     public ContactViewItem(Contact contact) {
         this.contact = contact;

@@ -18,7 +18,7 @@ import java.util.List;
 public class ContactsAdapter extends RecyclerView.Adapter<ViewItemBinder> implements INameableAdapter {
 
     interface LetterChangedListener {
-        void showLetter(Character character);
+        void letterChanged(Character character);
     }
 
     private final Context context;
@@ -88,9 +88,9 @@ public class ContactsAdapter extends RecyclerView.Adapter<ViewItemBinder> implem
             case ViewItem.TYPE_CONTACT: {
                 final ContactViewItem contactViewItem = (ContactViewItem) getItem(position);
                 final Contact contact = contactViewItem.getContact();
-                final Character character = contact != null ? contact.letter().charAt(0) : '#';
+                final Character character = contact != null ? contact.character() : Contact.CHAR_NONE;
                 if (listener != null) {
-                    listener.showLetter(character);
+                    listener.letterChanged(character);
                 }
                 return character;
             }
