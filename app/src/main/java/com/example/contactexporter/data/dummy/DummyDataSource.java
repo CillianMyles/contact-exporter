@@ -31,16 +31,16 @@ public class DummyDataSource implements ContactsDataSource {
 
     @Override
     public void loadAll(@NonNull LoadCallback callback) {
-        callback.onLoaded(DummyData.longListViewItems());
+        callback.onLoaded(DummyData.viewItemsLongList());
     }
 
     @Override
     public void search(@NonNull String name, @NonNull LoadCallback callback) {
-        callback.onLoaded(DummyData.contactViewItems());
+        callback.onLoaded(DummyData.viewItems());
     }
 
     @Override
     public void letter(@NonNull String letter, @NonNull LoadCallback callback) {
-        callback.onLoaded(DummyData.contactViewItems());
+        callback.onLoaded(DummyData.viewItems());
     }
 }

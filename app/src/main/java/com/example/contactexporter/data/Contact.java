@@ -8,6 +8,7 @@ import com.example.contactexporter.util.PhotoHelper;
 
 import java.io.Serializable;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * Created by Cillian Myles on 27/03/2018.
@@ -18,7 +19,7 @@ public class Contact implements Serializable {
     public static final String LETTER_NONE = "#";
     public static final Character CHAR_NONE = LETTER_NONE.charAt(0);
 
-    private long id; // TODO: change to final
+    private final long id;
     private final Map<String, String> data;
 
     public Contact(long id, Map<String, String> data) {
@@ -26,10 +27,9 @@ public class Contact implements Serializable {
         this.data = data;
     }
 
-    // TODO: add copy constructor??
-
-    public void setId(long id) { // TODO: remove method when id final
+    public Contact(long id, Contact contact) {
         this.id = id;
+        this.data = Objects.requireNonNull(contact).data;
     }
 
     public long getId() {
