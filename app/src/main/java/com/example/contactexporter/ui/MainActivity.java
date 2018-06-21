@@ -121,6 +121,12 @@ public class MainActivity extends AppCompatActivity implements ContactsAdapter.L
             message.setVisibility(validResults ? View.GONE : View.VISIBLE);
             if (validResults) {
                 adapter.swap(contacts);
+                for (ViewItem item : contacts) {
+                    if (item instanceof ContactViewItem) {
+                        currentLetter.setText(((ContactViewItem) item).getContact().letter());
+                        break;
+                    }
+                }
             }
         }
     };
@@ -152,7 +158,6 @@ public class MainActivity extends AppCompatActivity implements ContactsAdapter.L
 
     @Override
     public void showLetter(Character character) {
-        // TODO: show correct letter on first load
         currentLetter.setText(character != null ? character.toString() : null);
     }
 
