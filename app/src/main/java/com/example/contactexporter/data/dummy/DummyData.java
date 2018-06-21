@@ -36,7 +36,7 @@ public class DummyData {
     }
 
     public static List<ViewItem> longListViewItems() {
-        return Arrays.asList(
+        List<ViewItem> list = Arrays.asList(
                 ELON_VIEW_ITEM, ELON_VIEW_ITEM, ELON_VIEW_ITEM, ELON_VIEW_ITEM, ELON_VIEW_ITEM,
                 ELON_VIEW_ITEM, ELON_VIEW_ITEM, ELON_VIEW_ITEM, ELON_VIEW_ITEM, ELON_VIEW_ITEM,
                 DONALD_VIEW_ITEM, DONALD_VIEW_ITEM, DONALD_VIEW_ITEM, DONALD_VIEW_ITEM, DONALD_VIEW_ITEM,
@@ -44,6 +44,10 @@ public class DummyData {
                 HILARY_VIEW_ITEM, HILARY_VIEW_ITEM, HILARY_VIEW_ITEM, HILARY_VIEW_ITEM, HILARY_VIEW_ITEM,
                 HILARY_VIEW_ITEM, HILARY_VIEW_ITEM, HILARY_VIEW_ITEM, HILARY_VIEW_ITEM, HILARY_VIEW_ITEM
         );
+        for (int i = 0; i < list.size(); i++) {
+            ((ContactViewItem) list.get(i)).getContact().setId(i);
+        }
+        return list;
     }
 
     private static final int ID_ELON = 1;

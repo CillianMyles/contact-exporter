@@ -17,12 +17,16 @@ public class Contact implements Serializable {
 
     public static final String LETTER_NONE = "#";
 
-    private final long id;
+    private long id; // TODO: change to final
     private final Map<String, String> data;
 
     public Contact(long id, Map<String, String> data) {
         this.id = id;
         this.data = data;
+    }
+
+    public void setId(long id) { // TODO: remove method when id final
+        this.id = id;
     }
 
     public long getId() {
@@ -88,7 +92,7 @@ public class Contact implements Serializable {
 
     public String letter() {
         final String initials = initials();
-        return initials.length() >= 1 ? initials.substring(0,1) : LETTER_NONE;
+        return initials.length() >= 1 ? initials.substring(0, 1) : LETTER_NONE;
     }
 
     private String identifier() {
