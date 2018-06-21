@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
         adapter = new ContactsAdapter(this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        letterScrollBar.setIndicator(new AlphabetIndicator(this), true);
+        letterScrollBar.setIndicator(new AlphabetIndicator(this), false);
     }
 
     private void checkPermissionAndLoad() {
