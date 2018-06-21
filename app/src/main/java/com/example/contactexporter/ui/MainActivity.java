@@ -1,16 +1,24 @@
 package com.example.contactexporter.ui;
 
+import android.app.SearchManager;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
+import android.text.TextUtils;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
@@ -41,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
     private ContactsAdapter adapter;
     private TextView currentLetter;
     private MaterialScrollBar letterScrollBar;
+    private ContactsViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
         bindViews();
         initRecyclerView();
         checkPermissionAndLoad();
+        handleIntent(getIntent());
     }
 
     private void bindViews() {
@@ -97,10 +107,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void loadContacts() {
-        ViewModelProviders.of(this)
-                .get(ContactsViewModel.class)
-                .getLiveData()
-                .observe(this, observer);
+        viewModel = ViewModelProviders.of(this).get(ContactsViewModel.class);
+        viewModel.getLiveData().observe(this, observer);
     }
 
     private Observer<List<ViewItem>> observer = new Observer<List<ViewItem>>() {
@@ -140,5 +148,73 @@ public class MainActivity extends AppCompatActivity {
                 break;
             }
         }
+    }
+
+    /*
+     * Everything below here is related to search.
+     */
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        setIntent(intent);
+        handleIntent(intent);
+    }
+
+    private void handleIntent(Intent intent) {
+        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+            search(intent.getStringExtra(SearchManager.QUERY));
+        }
+    }
+
+    private int counter = 1; // TODO: remove
+
+    private void search(String query) {
+        if (TextUtils.isEmpty(query)) return;
+        Log.e(TAG, "UI search count: " + counter++); // TODO: remove
+        viewModel.search(query);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        initSearchInterface(menu);
+        return true;
+    }
+
+    private void initSearchInterface(Menu menu) {
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        MenuItem searchMenuItem = menu.findItem(R.id.action_search);
+        SearchView searchView = (SearchView) searchMenuItem.getActionView();
+
+        if (searchManager != null) {
+            searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+        }
+        searchView.setIconifiedByDefault(true);
+
+        //noinspection deprecation
+        MenuItemCompat.setOnActionExpandListener(searchMenuItem, new MenuItemCompat.OnActionExpandListener() {
+            @Override
+            public boolean onMenuItemActionCollapse(MenuItem item) {
+                Log.e(TAG, "Search menu CLOSED!"); // TODO: remove
+                viewModel.reset();
+                return true;
+            }
+
+            @Override
+            public boolean onMenuItemActionExpand(MenuItem item) {
+                Log.e(TAG, "Search menu EXPANDED!"); // TODO: remove
+                return true;
+            }
+        });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_search: {
+                return true;
+            }
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

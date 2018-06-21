@@ -2,7 +2,7 @@
 <resources>
 
     <string name="app_name">Contact Exporter</string>
-    <string name="search">Search contacts</string>
+    <string name="search">Search</string>
     <string name="no_results">No contacts found…</string>
     <string name="permission_granted">Contacts permission granted!</string>
     <string name="permission_denied">This app needs the contacts permission!</string>
