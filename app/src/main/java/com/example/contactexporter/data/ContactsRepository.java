@@ -82,4 +82,8 @@ public class ContactsRepository implements ContactsDataSource {
             contactSelection(entry.getKey(), entry.getValue());
         }
     }
+
+    public List<Long> selectedIds() {
+        return selectedIds;
+    }
 }

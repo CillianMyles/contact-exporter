@@ -46,4 +46,8 @@ public class ContactsViewModel extends AndroidViewModel {
     public void contactSelection(Map<Long, Boolean> selectionStateMap) {
         liveData.contactSelection(selectionStateMap);
     }
+
+    public List<Long> selectedIds() {
+        return liveData.selectedIds();
+    }
 }

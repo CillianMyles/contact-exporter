@@ -83,4 +83,8 @@ public class ContactsLiveData extends LiveData<List<ViewItem>> {
     public void contactSelection(Map<Long, Boolean> selectionStateMap) {
         repository.contactSelection(selectionStateMap);
     }
+
+    public List<Long> selectedIds() {
+        return repository.selectedIds();
+    }
 }

@@ -233,6 +233,10 @@ public class MainActivity extends AppCompatActivity
             case R.id.action_search: {
                 return true;
             }
+            case R.id.action_done: {
+                Log.e(TAG, "selectedIds: " + viewModel.selectedIds()); // TODO: remove!!
+                return true;
+            }
         }
         return super.onOptionsItemSelected(item);
     }
