@@ -166,6 +166,7 @@ public class MainActivity extends AppCompatActivity
     public void contactSelected(long adapterPosition, long contactId, boolean isChecked) {
         Log.e(TAG, "SELECTED EVENT - adapterPosition: " + adapterPosition
                 + " - contactId: " + contactId + " - isChecked: " + isChecked); // TODO: remove
+        viewModel.contactSelection(contactId, isChecked);
     }
 
     /*

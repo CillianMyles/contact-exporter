@@ -1,9 +1,14 @@
 package com.example.contactexporter.data;
 
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import com.example.contactexporter.data.dummy.DummyDataSource;
 import com.example.contactexporter.data.local.LocalDataSource;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Cillian Myles on 11/06/2018.
@@ -11,7 +16,11 @@ import com.example.contactexporter.data.local.LocalDataSource;
  */
 public class ContactsRepository implements ContactsDataSource {
 
+    private static final String TAG = ContactsRepository.class.getSimpleName();
+
     private static volatile ContactsRepository INSTANCE;
+
+    private final List<Long> selectedIds;
 
     private final LocalDataSource localSource;
     private final DummyDataSource dummySource;
@@ -35,6 +44,7 @@ public class ContactsRepository implements ContactsDataSource {
         }
         this.localSource = local;
         this.dummySource = dummy;
+        this.selectedIds = new ArrayList<>();
     }
 
     @Override
@@ -50,5 +60,26 @@ public class ContactsRepository implements ContactsDataSource {
     @Override
     public void letter(@NonNull String letter, @NonNull LoadCallback callback) {
         dummySource.letter(letter, callback); // TODO: change to LocalDataSource
+    }
+
+    public void contactSelection(long contactId, boolean isSelected) {
+        if (isSelected) {
+            if (!selectedIds.contains(contactId)) {
+                selectedIds.add(contactId);
+            }
+        } else {
+            final int index = selectedIds.indexOf(contactId);
+            if (index != -1) {
+                selectedIds.remove(index);
+            }
+        }
+        Log.e(TAG, "selectedIds: " + selectedIds); // TODO: remove!!
+    }
+
+    public void contactSelection(Map<Long, Boolean> selectionStateMap) {
+        if (selectionStateMap == null) return;
+        for (Map.Entry<Long, Boolean> entry : selectionStateMap.entrySet()) {
+            contactSelection(entry.getKey(), entry.getValue());
+        }
     }
 }

@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 import com.example.contactexporter.ui.ViewItem;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Cillian Myles on 27/03/2018.
@@ -36,5 +37,13 @@ public class ContactsViewModel extends AndroidViewModel {
 
     public void letter(@NonNull String letter) {
         liveData.letter(letter);
+    }
+
+    public void contactSelection(long contactId, boolean isSelected) {
+        liveData.contactSelection(contactId, isSelected);
+    }
+
+    public void contactSelection(Map<Long, Boolean> selectionStateMap) {
+        liveData.contactSelection(selectionStateMap);
     }
 }

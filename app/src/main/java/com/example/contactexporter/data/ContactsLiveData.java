@@ -8,6 +8,7 @@ import com.example.contactexporter.data.local.LocalDataSource;
 import com.example.contactexporter.ui.ViewItem;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Cillian Myles on 27/03/2018.
@@ -74,4 +75,12 @@ public class ContactsLiveData extends LiveData<List<ViewItem>> {
             setValue(null);
         }
     };
+
+    public void contactSelection(long contactId, boolean isSelected) {
+        repository.contactSelection(contactId, isSelected);
+    }
+
+    public void contactSelection(Map<Long, Boolean> selectionStateMap) {
+        repository.contactSelection(selectionStateMap);
+    }
 }
