@@ -17,7 +17,7 @@ public class ContactsLiveData extends LiveData<List<ViewItem>> {
 
     public static final int MODE_ALL = 0;
     public static final int MODE_SEARCH = 1;
-    public static final int MODE_LETTER = 2;
+    public static final int MODE_LETTER = 2; // TODO: remove!?
 
     private static int mode = MODE_ALL;
     private static final String NO_SEARCH = null;
