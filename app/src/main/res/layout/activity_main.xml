@@ -8,6 +8,13 @@
     android:layout_height="match_parent"
     tools:context="com.example.contactexporter.ui.MainActivity">
 
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        tools:visibility="visible"/>
+
     <TextView
         android:id="@+id/current_letter"
         android:layout_width="@dimen/main_current_letter_widget_width"
@@ -23,14 +30,14 @@
         tools:text="A"
         tools:visibility="visible"/>
 
-    <com.turingtechnologies.materialscrollbar.DragScrollBar
+    <com.turingtechnologies.materialscrollbar.TouchScrollBar
         android:id="@+id/letter_scroll_bar"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:visibility="visible"
-        app:msb_lightOnTouch="false"
+        app:msb_lightOnTouch="true"
         app:msb_recyclerView="@+id/recycler_view"
         tools:visibility="visible"/>
 
@@ -43,16 +50,5 @@
         android:text="@string/no_permission"
         android:visibility="visible"
         tools:visibility="gone"/>
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginEnd="@dimen/main_letter_filters_widget_width"
-        android:layout_marginLeft="@dimen/main_current_letter_widget_width"
-        android:layout_marginRight="@dimen/main_letter_filters_widget_width"
-        android:layout_marginStart="@dimen/main_current_letter_widget_width"
-        android:visibility="gone"
-        tools:visibility="visible"/>
 
 </RelativeLayout>

@@ -17,7 +17,7 @@ import android.widget.TextView;
 import com.example.contactexporter.R;
 import com.example.contactexporter.data.ContactsViewModel;
 import com.turingtechnologies.materialscrollbar.AlphabetIndicator;
-import com.turingtechnologies.materialscrollbar.DragScrollBar;
+import com.turingtechnologies.materialscrollbar.MaterialScrollBar;
 
 import java.util.List;
 
@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private ContactsAdapter adapter;
     private TextView currentLetter;
-    private DragScrollBar letterScrollBar;
+    private MaterialScrollBar letterScrollBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
