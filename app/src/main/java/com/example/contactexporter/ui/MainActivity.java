@@ -197,6 +197,7 @@ public class MainActivity extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         initSearchInterface(menu);
+        // TODO: only show done option if >= 1 contact selected!?
         return true;
     }
 
