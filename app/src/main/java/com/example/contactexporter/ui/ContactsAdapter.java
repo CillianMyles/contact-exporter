@@ -21,15 +21,23 @@ public class ContactsAdapter extends RecyclerView.Adapter<ViewItemBinder> implem
         void letterChanged(Character character);
     }
 
+    interface ContactSelectedListener {
+        void contactSelected(long adapterPosition, long contactId, boolean isChecked);
+    }
+
     private final Context context;
     private final LayoutInflater inflater;
-    private final LetterChangedListener listener;
+
+    private final LetterChangedListener letterListener;
+    private final ContactSelectedListener contactListener;
+
     private List<ViewItem> data;
 
-    ContactsAdapter(Context context, LetterChangedListener listener) {
-        this.context = context;
+    ContactsAdapter(Context context, LetterChangedListener letterListener, ContactSelectedListener contactListener) {
         inflater = LayoutInflater.from(context);
-        this.listener = listener;
+        this.context = context;
+        this.letterListener = letterListener;
+        this.contactListener = contactListener;
     }
 
     @NonNull
@@ -89,8 +97,8 @@ public class ContactsAdapter extends RecyclerView.Adapter<ViewItemBinder> implem
                 final ContactViewItem contactViewItem = (ContactViewItem) getItem(position);
                 final Contact contact = contactViewItem.getContact();
                 final Character character = contact != null ? contact.character() : Contact.CHAR_NONE;
-                if (listener != null) {
-                    listener.letterChanged(character);
+                if (letterListener != null) {
+                    letterListener.letterChanged(character);
                 }
                 return character;
             }

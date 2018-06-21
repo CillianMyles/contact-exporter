@@ -37,7 +37,8 @@ import static android.support.design.widget.Snackbar.LENGTH_LONG;
  * Created by Cillian Myles on 27/03/2018.
  * Copyright (c) 2018 Cillian Myles. All rights reserved.
  */
-public class MainActivity extends AppCompatActivity implements ContactsAdapter.LetterChangedListener {
+public class MainActivity extends AppCompatActivity
+        implements ContactsAdapter.LetterChangedListener, ContactsAdapter.ContactSelectedListener {
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
@@ -70,7 +71,7 @@ public class MainActivity extends AppCompatActivity implements ContactsAdapter.L
     }
 
     private void initRecyclerView() {
-        adapter = new ContactsAdapter(this, this);
+        adapter = new ContactsAdapter(this, this, this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         letterScrollBar.setIndicator(new AlphabetIndicator(this), false);
@@ -159,6 +160,12 @@ public class MainActivity extends AppCompatActivity implements ContactsAdapter.L
     @Override
     public void letterChanged(Character character) {
         currentLetter.setText(character != null ? character.toString() : null);
+    }
+
+    @Override
+    public void contactSelected(long adapterPosition, long contactId, boolean isChecked) {
+        Log.e(TAG, "SELECTED EVENT - adapterPosition: " + adapterPosition
+                + " contactId: " + contactId + " - isChecked: " + isChecked); // TODO: remove
     }
 
     /*
