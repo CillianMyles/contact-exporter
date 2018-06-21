@@ -17,14 +17,6 @@ import java.util.List;
  */
 public class ContactsAdapter extends RecyclerView.Adapter<ViewItemBinder> implements INameableAdapter {
 
-    interface LetterChangedListener {
-        void letterChanged(Character character);
-    }
-
-    interface ContactSelectedListener {
-        void contactSelected(long adapterPosition, long contactId, boolean isChecked);
-    }
-
     private final Context context;
     private final LayoutInflater inflater;
 
@@ -70,7 +62,9 @@ public class ContactsAdapter extends RecyclerView.Adapter<ViewItemBinder> implem
     }
 
     private ViewItem getItem(int position) {
-        return data.get(position);
+        ContactViewItem item = (ContactViewItem) data.get(position); // TODO: don't assume type!?
+        item.setListener(contactListener);
+        return item;
     }
 
     @SuppressWarnings("UnusedReturnValue")

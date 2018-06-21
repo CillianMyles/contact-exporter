@@ -9,13 +9,28 @@ import com.example.contactexporter.data.Contact;
 public class ContactViewItem extends ViewItem {
 
     private final Contact contact;
+    private ContactSelectedListener listener;
+
+    public ContactViewItem(Contact contact, ContactSelectedListener listener) {
+        this.contact = contact;
+        this.listener = listener;
+    }
 
     public ContactViewItem(Contact contact) {
-        this.contact = contact;
+        this(contact, null);
     }
 
     public Contact getContact() {
         return contact;
+    }
+
+    public ContactViewItem setListener(ContactSelectedListener listener) {
+        this.listener = listener;
+        return this;
+    }
+
+    public ContactSelectedListener getListener() {
+        return listener;
     }
 
     @Override

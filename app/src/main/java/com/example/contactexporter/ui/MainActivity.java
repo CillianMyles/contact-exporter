@@ -38,7 +38,7 @@ import static android.support.design.widget.Snackbar.LENGTH_LONG;
  * Copyright (c) 2018 Cillian Myles. All rights reserved.
  */
 public class MainActivity extends AppCompatActivity
-        implements ContactsAdapter.LetterChangedListener, ContactsAdapter.ContactSelectedListener {
+        implements LetterChangedListener, ContactSelectedListener {
 
     private static final String TAG = MainActivity.class.getSimpleName();
 

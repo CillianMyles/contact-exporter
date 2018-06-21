@@ -3,7 +3,6 @@ package com.example.contactexporter.ui;
 import android.content.Context;
 import android.content.res.Resources;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,6 +39,7 @@ public class ContactViewItemBinder extends ViewItemBinder<ContactViewItem> {
     public void bind(int position, Context context) {
         final Resources resources = context.getResources();
         final Contact contact = getItem().getContact();
+        final ContactSelectedListener listener = getItem().getListener();
         image.setBackgroundColor(contact.backgroundColor(resources));
         if (!TextUtils.isEmpty(contact.photoUri())) {
             final int pixels = resources.getInteger(R.integer.contact_photo_pixels);
@@ -53,7 +53,9 @@ public class ContactViewItemBinder extends ViewItemBinder<ContactViewItem> {
         name.setText(contact.fullName());
         itemView.setOnClickListener(view -> selected.toggle());
         selected.setOnCheckedChangeListener((compoundButton, isChecked) -> {
-            Log.e(TAG, "id: " + contact.getId() + " - isChecked: " + isChecked); // TODO: remove
+            if (listener != null) {
+                listener.contactSelected(position, contact.getId(), isChecked);
+            }
         });
     }
 

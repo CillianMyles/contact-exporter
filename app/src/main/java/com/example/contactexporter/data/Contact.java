@@ -26,6 +26,8 @@ public class Contact implements Serializable {
         this.data = data;
     }
 
+    // TODO: add copy constructor??
+
     public void setId(long id) { // TODO: remove method when id final
         this.id = id;
     }
