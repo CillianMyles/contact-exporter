@@ -15,6 +15,8 @@ import java.util.Map;
  */
 public class Contact implements Serializable {
 
+    public static final String LETTER_NONE = "#";
+
     private final long id;
     private final Map<String, String> data;
 
@@ -82,6 +84,11 @@ public class Contact implements Serializable {
 
     public String lastName() {
         return getValue("last_name");
+    }
+
+    public String letter() {
+        final String initials = initials();
+        return initials.length() >= 1 ? initials.substring(0,1) : LETTER_NONE;
     }
 
     private String identifier() {

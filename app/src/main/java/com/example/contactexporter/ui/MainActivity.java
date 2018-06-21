@@ -17,6 +17,8 @@ import android.widget.TextView;
 
 import com.example.contactexporter.R;
 import com.example.contactexporter.data.ContactsViewModel;
+import com.turingtechnologies.materialscrollbar.AlphabetIndicator;
+import com.turingtechnologies.materialscrollbar.TouchScrollBar;
 
 import java.util.List;
 
@@ -35,10 +37,11 @@ public class MainActivity extends AppCompatActivity {
     private static final int REQUEST_CODE_CONTACTS = 0;
 
     private ConstraintLayout baseLayout;
-    private RecyclerView recyclerView;
     private TextView message;
-    private TextView currentLetter;
+    private RecyclerView recyclerView;
     private ContactsAdapter adapter;
+    private TextView currentLetter;
+    private TouchScrollBar letterScrollBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,15 +54,17 @@ public class MainActivity extends AppCompatActivity {
 
     private void bindViews() {
         baseLayout = findViewById(R.id.base_layout);
+        message = findViewById(R.id.message);
         recyclerView = findViewById(R.id.recycler_view);
         currentLetter = findViewById(R.id.current_letter);
-        message = findViewById(R.id.message);
+        letterScrollBar = findViewById(R.id.letter_scroll_bar);
     }
 
     private void initRecyclerView() {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new ContactsAdapter(this);
         recyclerView.setAdapter(adapter);
+        letterScrollBar.setIndicator(new AlphabetIndicator(this), false);
     }
 
     private void checkPermissionAndLoad() {
@@ -105,6 +110,7 @@ public class MainActivity extends AppCompatActivity {
             boolean validResults = contacts != null && !contacts.isEmpty();
             recyclerView.setVisibility(validResults ? View.VISIBLE : View.GONE);
             currentLetter.setVisibility(validResults ? View.VISIBLE : View.GONE);
+            letterScrollBar.setVisibility(validResults ? View.VISIBLE : View.GONE);
             message.setVisibility(validResults ? View.GONE : View.VISIBLE);
             if (validResults) {
                 adapter.swap(contacts);

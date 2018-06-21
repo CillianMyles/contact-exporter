@@ -6,13 +6,16 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
+import com.example.contactexporter.data.Contact;
+import com.turingtechnologies.materialscrollbar.INameableAdapter;
+
 import java.util.List;
 
 /**
  * Created by Cillian Myles on 27/03/2018.
  * Copyright (c) 2018 Cillian Myles. All rights reserved.
  */
-public class ContactsAdapter extends RecyclerView.Adapter<ViewItemBinder> {
+public class ContactsAdapter extends RecyclerView.Adapter<ViewItemBinder> implements INameableAdapter {
 
     private final Context context;
     private final LayoutInflater inflater;
@@ -71,5 +74,17 @@ public class ContactsAdapter extends RecyclerView.Adapter<ViewItemBinder> {
             notifyItemRangeRemoved(0, getItemCount());
         }
         return oldList;
+    }
+
+    @Override
+    public Character getCharacterForElement(int position) {
+        switch (getItemViewType(position)) {
+            case ViewItem.TYPE_CONTACT: {
+                final ContactViewItem contactViewItem = (ContactViewItem) getItem(position);
+                final Contact contact = contactViewItem.getContact();
+                return contact != null ? contact.letter().charAt(0) : '#';
+            }
+        }
+        throw new IllegalStateException("View type not supported.");
     }
 }
