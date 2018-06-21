@@ -31,7 +31,7 @@ public class DummyDataSource implements ContactsDataSource {
 
     @Override
     public void loadAll(@NonNull LoadCallback callback) {
-        callback.onLoaded(DummyData.contactViewItems());
+        callback.onLoaded(DummyData.longListViewItems());
     }
 
     @Override

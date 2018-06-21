@@ -5,7 +5,6 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -18,7 +17,7 @@ import android.widget.TextView;
 import com.example.contactexporter.R;
 import com.example.contactexporter.data.ContactsViewModel;
 import com.turingtechnologies.materialscrollbar.AlphabetIndicator;
-import com.turingtechnologies.materialscrollbar.TouchScrollBar;
+import com.turingtechnologies.materialscrollbar.DragScrollBar;
 
 import java.util.List;
 
@@ -36,12 +35,12 @@ public class MainActivity extends AppCompatActivity {
 
     private static final int REQUEST_CODE_CONTACTS = 0;
 
-    private ConstraintLayout baseLayout;
+    private View baseLayout;
     private TextView message;
     private RecyclerView recyclerView;
     private ContactsAdapter adapter;
     private TextView currentLetter;
-    private TouchScrollBar letterScrollBar;
+    private DragScrollBar letterScrollBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,10 +60,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initRecyclerView() {
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new ContactsAdapter(this);
         recyclerView.setAdapter(adapter);
-        letterScrollBar.setIndicator(new AlphabetIndicator(this), false);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        letterScrollBar.setIndicator(new AlphabetIndicator(this), true);
     }
 
     private void checkPermissionAndLoad() {

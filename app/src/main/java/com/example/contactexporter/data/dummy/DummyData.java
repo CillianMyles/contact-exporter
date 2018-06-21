@@ -35,6 +35,17 @@ public class DummyData {
         return Arrays.asList(ELON_VIEW_ITEM, DONALD_VIEW_ITEM, HILARY_VIEW_ITEM);
     }
 
+    public static List<ViewItem> longListViewItems() {
+        return Arrays.asList(
+                ELON_VIEW_ITEM, ELON_VIEW_ITEM, ELON_VIEW_ITEM, ELON_VIEW_ITEM, ELON_VIEW_ITEM,
+                ELON_VIEW_ITEM, ELON_VIEW_ITEM, ELON_VIEW_ITEM, ELON_VIEW_ITEM, ELON_VIEW_ITEM,
+                DONALD_VIEW_ITEM, DONALD_VIEW_ITEM, DONALD_VIEW_ITEM, DONALD_VIEW_ITEM, DONALD_VIEW_ITEM,
+                DONALD_VIEW_ITEM, DONALD_VIEW_ITEM, DONALD_VIEW_ITEM, DONALD_VIEW_ITEM, DONALD_VIEW_ITEM,
+                HILARY_VIEW_ITEM, HILARY_VIEW_ITEM, HILARY_VIEW_ITEM, HILARY_VIEW_ITEM, HILARY_VIEW_ITEM,
+                HILARY_VIEW_ITEM, HILARY_VIEW_ITEM, HILARY_VIEW_ITEM, HILARY_VIEW_ITEM, HILARY_VIEW_ITEM
+        );
+    }
+
     private static final int ID_ELON = 1;
     private static final Contact ELON;
     private static final ContactViewItem ELON_VIEW_ITEM;
