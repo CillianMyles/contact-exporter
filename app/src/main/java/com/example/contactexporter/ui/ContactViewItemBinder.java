@@ -53,6 +53,7 @@ public class ContactViewItemBinder extends ViewItemBinder<ContactViewItem> {
         initials.setText(contact.initials());
         name.setText(contact.fullName());
         itemView.setOnClickListener(view -> selected.toggle());
+        selected.setOnCheckedChangeListener(null); // TODO: fix checkbox state issue
         selected.setSelected(isSelected);
         selected.setOnCheckedChangeListener((compoundButton, isChecked) -> {
             if (listener != null) {
