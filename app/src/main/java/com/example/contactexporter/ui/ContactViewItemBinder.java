@@ -39,6 +39,7 @@ public class ContactViewItemBinder extends ViewItemBinder<ContactViewItem> {
     public void bind(int position, Context context) {
         final Resources resources = context.getResources();
         final Contact contact = getItem().getContact();
+        final boolean isSelected = getItem().isSelected();
         final ContactSelectedListener listener = getItem().getListener();
         image.setBackgroundColor(contact.backgroundColor(resources));
         if (!TextUtils.isEmpty(contact.photoUri())) {
@@ -52,6 +53,7 @@ public class ContactViewItemBinder extends ViewItemBinder<ContactViewItem> {
         initials.setText(contact.initials());
         name.setText(contact.fullName());
         itemView.setOnClickListener(view -> selected.toggle());
+        selected.setSelected(isSelected);
         selected.setOnCheckedChangeListener((compoundButton, isChecked) -> {
             if (listener != null) {
                 listener.contactSelected(position, contact.getId(), isChecked);

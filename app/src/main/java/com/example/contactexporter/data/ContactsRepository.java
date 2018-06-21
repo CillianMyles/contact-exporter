@@ -5,6 +5,8 @@ import android.util.Log;
 
 import com.example.contactexporter.data.dummy.DummyDataSource;
 import com.example.contactexporter.data.local.LocalDataSource;
+import com.example.contactexporter.ui.ContactViewItem;
+import com.example.contactexporter.ui.ViewItem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,7 +51,25 @@ public class ContactsRepository implements ContactsDataSource {
 
     @Override
     public void loadAll(@NonNull LoadCallback callback) {
-        dummySource.loadAll(callback); // TODO: change to LocalDataSource
+        // TODO: change to LocalDataSource
+        dummySource.loadAll(new LoadCallback() {
+
+            @Override
+            public void onLoaded(List<ViewItem> contacts) {
+                // TODO : remove this from UI thread!?
+                for (ViewItem item : contacts) {
+                    if (item instanceof ContactViewItem) {
+                        final ContactViewItem contactItem = (ContactViewItem) item;
+                        final boolean isChecked = selectedIds.contains(contactItem.getContactId());
+                        contactItem.setSelected(isChecked);
+                    }
+                }
+                callback.onLoaded(contacts);
+            }
+
+            @Override
+            public void onError(String message) {}
+        });
     }
 
     @Override

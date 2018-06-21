@@ -9,19 +9,34 @@ import com.example.contactexporter.data.Contact;
 public class ContactViewItem extends ViewItem {
 
     private final Contact contact;
+    private boolean isSelected;
     private ContactSelectedListener listener;
 
-    public ContactViewItem(Contact contact, ContactSelectedListener listener) {
+    public ContactViewItem(Contact contact, boolean isSelected, ContactSelectedListener listener) {
         this.contact = contact;
+        this.isSelected = isSelected;
         this.listener = listener;
     }
 
     public ContactViewItem(Contact contact) {
-        this(contact, null);
+        this(contact, false, null);
     }
 
     public Contact getContact() {
         return contact;
+    }
+
+    public long getContactId() {
+        return contact != null ? contact.getId() : -1;
+    }
+
+    public boolean isSelected() {
+        return isSelected;
+    }
+
+    public ContactViewItem setSelected(boolean selected) {
+        isSelected = selected;
+        return this;
     }
 
     public ContactViewItem setListener(ContactSelectedListener listener) {
