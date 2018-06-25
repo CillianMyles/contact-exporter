@@ -30,6 +30,12 @@
                 android:resource="@xml/searchable"/>
         </activity>
 
+        <activity
+            android:name=".ui.ConfigActivity"
+            android:label="@string/config_title"
+            android:launchMode="singleTop">
+        </activity>
+
     </application>
 
 </manifest>

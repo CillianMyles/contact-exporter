@@ -9,5 +9,6 @@
     <string name="no_permission">This app needs the contacts permission to export contacts.\n\nPlease enable in settings!</string>
     <string name="contact_letter_default">#</string>
     <string name="done">Done</string>
+    <string name="config_title">Configuration</string>
 
 </resources>

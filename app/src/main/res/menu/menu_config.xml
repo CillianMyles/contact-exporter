@@ -6,18 +6,10 @@
     tools:context=".ui.MainActivity">
 
     <item
-        android:id="@+id/action_search"
-        android:icon="@drawable/ic_search"
-        android:orderInCategory="90"
-        android:title="@string/search"
-        app:actionViewClass="android.support.v7.widget.SearchView"
-        app:showAsAction="always|collapseActionView"/>
-
-    <item
         android:id="@+id/action_done"
         android:icon="@drawable/ic_done"
         android:orderInCategory="100"
         android:title="@string/done"
-        app:showAsAction="ifRoom|collapseActionView"/>
+        app:showAsAction="always"/>
 
 </menu>
