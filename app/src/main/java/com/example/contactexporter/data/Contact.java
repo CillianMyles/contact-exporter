@@ -32,6 +32,14 @@ public class Contact implements Serializable {
         this.data = Objects.requireNonNull(contact).data;
     }
 
+    @Override
+    public String toString() {
+        return "Contact{" +
+                "id=" + id +
+                ",name=" + fullName() +
+                '}';
+    }
+
     public long getId() {
         return id;
     }

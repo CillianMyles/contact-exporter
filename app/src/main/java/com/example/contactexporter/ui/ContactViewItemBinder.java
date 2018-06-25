@@ -3,6 +3,7 @@ package com.example.contactexporter.ui;
 import android.content.Context;
 import android.content.res.Resources;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,6 +42,7 @@ public class ContactViewItemBinder extends ViewItemBinder<ContactViewItem> {
         final Contact contact = getItem().getContact();
         final boolean isSelected = getItem().isSelected();
         final ContactSelectedListener listener = getItem().getListener();
+        Log.e(TAG, "position: " + position + " - isSelected: " + isSelected + " - contact: " + contact); // TODO: remove
         image.setBackgroundColor(contact.backgroundColor(resources));
         if (!TextUtils.isEmpty(contact.photoUri())) {
             final int pixels = resources.getInteger(R.integer.contact_photo_pixels);
@@ -52,10 +54,12 @@ public class ContactViewItemBinder extends ViewItemBinder<ContactViewItem> {
         }
         initials.setText(contact.initials());
         name.setText(contact.fullName());
-        itemView.setOnClickListener(view -> selected.toggle());
+        itemView.setOnClickListener(null);
         selected.setOnCheckedChangeListener(null); // TODO: fix checkbox state issue
         selected.setSelected(isSelected);
+        itemView.setOnClickListener(view -> selected.toggle());
         selected.setOnCheckedChangeListener((compoundButton, isChecked) -> {
+            getItem().setSelected(isChecked);
             if (listener != null) {
                 listener.contactSelected(position, contact.getId(), isChecked);
             }
