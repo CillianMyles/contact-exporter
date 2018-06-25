@@ -181,7 +181,7 @@ public class MainActivity extends AppCompatActivity
 
     private void handleIntent(Intent intent) {
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
-            search(intent.getStringExtra(SearchManager.QUERY));
+            search(intent.getStringExtra(SearchManager.QUERY)); // TODO: fix double search issue!?
         }
     }
 
