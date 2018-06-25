@@ -57,11 +57,13 @@ public class ContactsRepository implements ContactsDataSource {
             @Override
             public void onLoaded(List<ViewItem> contacts) {
                 // TODO : remove this from UI thread!?
-                for (ViewItem item : contacts) {
-                    if (item instanceof ContactViewItem) {
-                        final ContactViewItem contactItem = (ContactViewItem) item;
-                        final boolean isChecked = selectedIds.contains(contactItem.getContactId());
-                        contactItem.setSelected(isChecked);
+                if (!selectedIds.isEmpty()) {
+                    for (ViewItem item : contacts) {
+                        if (item instanceof ContactViewItem) {
+                            final ContactViewItem contactItem = (ContactViewItem) item;
+                            final boolean isChecked = selectedIds.contains(contactItem.getContactId());
+                            contactItem.setSelected(isChecked);
+                        }
                     }
                 }
                 callback.onLoaded(contacts);
