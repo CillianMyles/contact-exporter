@@ -84,6 +84,16 @@ public class ContactsRepository implements ContactsDataSource {
         dummySource.letter(letter, callback); // TODO: change to LocalDataSource
     }
 
+    @Override
+    public void load(long id, @NonNull LoadCallback callback) {
+        dummySource.load(id, callback); // TODO: change to LocalDataSource
+    }
+
+    @Override
+    public void load(@NonNull List<Long> ids, @NonNull LoadCallback callback) {
+        dummySource.load(ids, callback); // TODO: change to LocalDataSource
+    }
+
     public void contactSelection(long contactId, boolean isSelected) {
         if (isSelected) {
             if (!selectedIds.contains(contactId)) {

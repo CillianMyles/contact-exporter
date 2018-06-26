@@ -63,6 +63,16 @@ public class ContactsLiveData extends LiveData<List<ViewItem>> {
         repository.letter(letter, callback);
     }
 
+    public void load(long id) {
+        mode = MODE_ALL;
+        repository.load(id, callback);
+    }
+
+    public void load(List<Long> ids) {
+        mode = MODE_ALL;
+        repository.load(ids, callback);
+    }
+
     private ContactsRepository.LoadCallback callback = new ContactsRepository.LoadCallback() {
 
         @Override

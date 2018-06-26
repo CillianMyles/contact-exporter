@@ -24,4 +24,8 @@ public interface ContactsDataSource {
     void search(@NonNull String name, @NonNull LoadCallback callback);
 
     void letter(@NonNull String letter, @NonNull LoadCallback callback);
+
+    void load(long id, @NonNull LoadCallback callback);
+
+    void load(@NonNull List<Long> ids, @NonNull LoadCallback callback);
 }

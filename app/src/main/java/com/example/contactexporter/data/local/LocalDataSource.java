@@ -4,6 +4,8 @@ import android.support.annotation.NonNull;
 
 import com.example.contactexporter.data.ContactsDataSource;
 
+import java.util.List;
+
 /**
  * Created by Cillian Myles on 07/06/2018.
  * Copyright (c) 2018 Cillian Myles. All rights reserved.
@@ -41,6 +43,16 @@ public class LocalDataSource implements ContactsDataSource {
 
     @Override
     public void letter(@NonNull String letter, @NonNull LoadCallback callback) {
+        // TODO: implement !!
+    }
+
+    @Override
+    public void load(long id, @NonNull LoadCallback callback) {
+        // TODO: implement !!
+    }
+
+    @Override
+    public void load(@NonNull List<Long> ids, @NonNull LoadCallback callback) {
         // TODO: implement !!
     }
 }

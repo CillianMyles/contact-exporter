@@ -4,6 +4,7 @@ import com.example.contactexporter.data.Contact;
 import com.example.contactexporter.ui.ContactViewItem;
 import com.example.contactexporter.ui.ViewItem;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -29,6 +30,16 @@ public class DummyData {
 
     public static List<Contact> contacts() {
         return Arrays.asList(ELON, DONALD, HILARY);
+    }
+
+    public static List<Contact> contactsLongList() {
+        final List<Contact> list = new ArrayList<>();
+        for (ViewItem item : viewItemsLongList()) {
+            if (item instanceof ContactViewItem) {
+                list.add(((ContactViewItem) item).getContact());
+            }
+        }
+        return list;
     }
 
     public static List<ViewItem> viewItems() {

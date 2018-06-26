@@ -39,6 +39,14 @@ public class ContactsViewModel extends AndroidViewModel {
         liveData.letter(letter);
     }
 
+    public void load(long id) {
+        liveData.load(id);
+    }
+
+    public void load(@NonNull List<Long> ids) {
+        liveData.load(ids);
+    }
+
     public void contactSelection(long contactId, boolean isSelected) {
         liveData.contactSelection(contactId, isSelected);
     }
