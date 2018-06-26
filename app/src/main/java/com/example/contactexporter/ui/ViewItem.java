@@ -11,6 +11,7 @@ import java.io.Serializable;
 public abstract class ViewItem implements Serializable, Comparable<ViewItem> {
 
     public static final int TYPE_CONTACT = 1;
+    public static final int TYPE_PROGRESS = 2;
 
     public abstract int getItemViewType();
 

@@ -6,30 +6,21 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
-import com.example.contactexporter.data.Contact;
-import com.turingtechnologies.materialscrollbar.INameableAdapter;
-
 import java.util.List;
 
 /**
- * Created by Cillian Myles on 27/03/2018.
+ * Created by Cillian Myles on 26/06/2018.
  * Copyright (c) 2018 Cillian Myles. All rights reserved.
  */
-public class ContactsAdapter extends RecyclerView.Adapter<ViewItemBinder> implements INameableAdapter {
+public class ProgressAdapter extends RecyclerView.Adapter<ViewItemBinder> {
 
     private final Context context;
     private final LayoutInflater inflater;
-
-    private final LetterChangedListener letterListener;
-    private final ContactSelectedListener contactListener;
-
     private List<ViewItem> data;
 
-    ContactsAdapter(Context context, LetterChangedListener letterListener, ContactSelectedListener contactListener) {
-        inflater = LayoutInflater.from(context);
+    ProgressAdapter(Context context) {
         this.context = context;
-        this.letterListener = letterListener;
-        this.contactListener = contactListener;
+        inflater = LayoutInflater.from(context);
     }
 
     @NonNull
@@ -65,11 +56,7 @@ public class ContactsAdapter extends RecyclerView.Adapter<ViewItemBinder> implem
     }
 
     private ViewItem getItem(int position) {
-        ViewItem item = data.get(position);
-        if (item instanceof ContactViewItem) {
-            ((ContactViewItem) item).setListener(contactListener);
-        }
-        return item;
+        return data.get(position);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -87,24 +74,5 @@ public class ContactsAdapter extends RecyclerView.Adapter<ViewItemBinder> implem
             notifyItemRangeRemoved(0, getItemCount());
         }
         return oldList;
-    }
-
-    @Override
-    public Character getCharacterForElement(int position) {
-        switch (getItemViewType(position)) {
-            case ViewItem.TYPE_CONTACT: {
-                final ContactViewItem contactViewItem = (ContactViewItem) getItem(position);
-                final Contact contact = contactViewItem.getContact();
-                final Character character = contact != null ? contact.character() : Contact.CHAR_NONE;
-                if (letterListener != null) {
-                    letterListener.letterChanged(character);
-                }
-                return character;
-            }
-            case ViewItem.TYPE_PROGRESS: {
-                return Contact.CHAR_NONE; // TODO: remove!?
-            }
-        }
-        throw new IllegalStateException("View type not supported.");
     }
 }

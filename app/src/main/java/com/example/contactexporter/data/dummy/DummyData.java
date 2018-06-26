@@ -2,6 +2,7 @@ package com.example.contactexporter.data.dummy;
 
 import com.example.contactexporter.data.Contact;
 import com.example.contactexporter.ui.ContactViewItem;
+import com.example.contactexporter.ui.ProgressViewItem;
 import com.example.contactexporter.ui.ViewItem;
 
 import java.util.ArrayList;
@@ -34,7 +35,7 @@ public class DummyData {
 
     public static List<Contact> contactsLongList() {
         final List<Contact> list = new ArrayList<>();
-        for (ViewItem item : viewItemsLongList()) {
+        for (ViewItem item : contactItemsLongList()) {
             if (item instanceof ContactViewItem) {
                 list.add(((ContactViewItem) item).getContact());
             }
@@ -42,21 +43,25 @@ public class DummyData {
         return list;
     }
 
-    public static List<ViewItem> viewItems() {
+    public static List<ViewItem> contactItems() {
         return Arrays.asList(ELON_VIEW_ITEM, DONALD_VIEW_ITEM, HILARY_VIEW_ITEM);
     }
 
-    public static List<ViewItem> viewItemsLongList() {
+    public static List<ViewItem> contactItemsLongList() {
         long i = 1;
         return Arrays.asList(
-                item(i++, ELON), item(i++, ELON), item(i++, ELON), item(i++, ELON), item(i++, ELON),
-                item(i++, DONALD), item(i++, DONALD), item(i++, DONALD), item(i++, DONALD), item(i++, DONALD),
-                item(i++, HILARY), item(i++, HILARY), item(i++, HILARY), item(i++, HILARY), item(i++, HILARY)
+                contact(i++, ELON), contact(i++, ELON), contact(i++, ELON), contact(i++, ELON), contact(i++, ELON),
+                contact(i++, DONALD), contact(i++, DONALD), contact(i++, DONALD), contact(i++, DONALD), contact(i++, DONALD),
+                contact(i++, HILARY), contact(i++, HILARY), contact(i++, HILARY), contact(i++, HILARY), contact(i++, HILARY)
         );
     }
 
-    private static ViewItem item(long id, Contact contact) {
+    public static ViewItem contact(long id, Contact contact) {
         return new ContactViewItem(new Contact(id, contact));
+    }
+
+    public static ViewItem progress(ContactViewItem contactViewItem) {
+        return new ProgressViewItem(new Contact(contactViewItem.getContactId(), contactViewItem.getContact()));
     }
 
     private static final int ID_ELON = 1;

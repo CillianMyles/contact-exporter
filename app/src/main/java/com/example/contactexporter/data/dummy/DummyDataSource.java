@@ -36,22 +36,22 @@ public class DummyDataSource implements ContactsDataSource {
 
     @Override
     public void loadAll(@NonNull LoadCallback callback) {
-        callback.onLoaded(DummyData.viewItemsLongList());
+        callback.onLoaded(DummyData.contactItemsLongList());
     }
 
     @Override
     public void search(@NonNull String name, @NonNull LoadCallback callback) {
-        callback.onLoaded(DummyData.viewItems());
+        callback.onLoaded(DummyData.contactItems());
     }
 
     @Override
     public void letter(@NonNull String letter, @NonNull LoadCallback callback) {
-        callback.onLoaded(DummyData.viewItems());
+        callback.onLoaded(DummyData.contactItems());
     }
 
     @Override
     public void load(long id, @NonNull LoadCallback callback) {
-        final List<ViewItem> all = DummyData.viewItemsLongList();
+        final List<ViewItem> all = DummyData.contactItemsLongList();
         for (ViewItem item : all) {
             if (item instanceof ContactViewItem && ((ContactViewItem) item).getContactId() == id) {
                 final int position = all.indexOf(item);
@@ -64,15 +64,16 @@ public class DummyDataSource implements ContactsDataSource {
     @Override
     public void load(@NonNull List<Long> ids, @NonNull LoadCallback callback) {
         if (ids.isEmpty()) return;
-        final List<ViewItem> all = DummyData.viewItemsLongList();
+        final List<ViewItem> all = DummyData.contactItemsLongList();
         final List<Long> idsLeft = new ArrayList<>(ids);
         final List<ViewItem> result = new ArrayList<>();
         for (ViewItem item : all) {
             if (item instanceof ContactViewItem) {
-                final long tempId = ((ContactViewItem) item).getContactId();
+                final ContactViewItem contactViewItem = (ContactViewItem) item;
+                final long tempId = contactViewItem.getContactId();
                 if (idsLeft.contains(tempId)) {
                     idsLeft.remove(tempId);
-                    result.add(item);
+                    result.add(DummyData.progress(contactViewItem));
                     if (idsLeft.isEmpty()) {
                         break;
                     }

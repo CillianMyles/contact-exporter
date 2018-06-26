@@ -42,6 +42,8 @@ public class MainActivity extends AppCompatActivity
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
+    public static final String EXTRA_CONTACT_IDS = "contact-ids";
+
     private static final int REQUEST_CODE_CONTACTS = 0;
 
     private View baseLayout;
@@ -235,7 +237,15 @@ public class MainActivity extends AppCompatActivity
                 return true;
             }
             case R.id.action_done: {
-                Log.e(TAG, "selectedIds: " + viewModel.selectedIds()); // TODO: remove!!
+                final List<Long> selectedIds = viewModel.selectedIds();
+                Log.e(TAG, "selectedIds: " + selectedIds); // TODO: remove!!
+                if (selectedIds == null || selectedIds.isEmpty()) {
+                    return true;
+                }
+                Intent intent = new Intent(this, ProgressActivity.class);
+                // TODO: remove or delete contact ids from intent!?
+                intent.putExtra(MainActivity.EXTRA_CONTACT_IDS, TextUtils.join(",", selectedIds));
+                startActivity(intent);
                 return true;
             }
         }
