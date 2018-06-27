@@ -42,10 +42,14 @@ public class SelectionLiveData extends LiveData<List<ViewItem>> {
     private SelectionLiveData(Application context) {
         this.context = context;
         repository = ContactsRepository.getInstance();
-        reset();
+        loadAll();
     }
 
     public void reset() {
+        loadAll();
+    }
+
+    public void loadAll() {
         mode = MODE_ALL;
         repository.loadAll(callback);
     }

@@ -31,6 +31,10 @@ public class SelectionViewModel extends AndroidViewModel {
         liveData.reset();
     }
 
+    public void loadAll() {
+        liveData.loadAll();
+    }
+
     public void search(@NonNull String name) {
         liveData.search(name);
     }
