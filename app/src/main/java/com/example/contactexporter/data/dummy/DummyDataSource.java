@@ -50,7 +50,7 @@ public class DummyDataSource implements ContactsDataSource {
     }
 
     @Override
-    public void load(long id, @NonNull LoadCallback callback) {
+    public void loadById(long id, @NonNull LoadCallback callback) {
         final List<ViewItem> all = DummyData.contactItemsLongList();
         for (ViewItem item : all) {
             if (item instanceof ContactViewItem && ((ContactViewItem) item).getContactId() == id) {
@@ -62,7 +62,7 @@ public class DummyDataSource implements ContactsDataSource {
     }
 
     @Override
-    public void load(@NonNull List<Long> ids, @NonNull LoadCallback callback) {
+    public void loadByIds(@NonNull List<Long> ids, @NonNull LoadCallback callback) {
         if (ids.isEmpty()) return;
         final List<ViewItem> all = DummyData.contactItemsLongList();
         final List<Long> idsLeft = new ArrayList<>(ids);

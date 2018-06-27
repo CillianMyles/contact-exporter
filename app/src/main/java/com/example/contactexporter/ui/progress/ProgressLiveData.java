@@ -38,18 +38,19 @@ public class ProgressLiveData extends LiveData<List<ViewItem>> {
         repository = ContactsRepository.getInstance(
                 LocalDataSource.getInstance(),
                 DummyDataSource.getInstance());
-    }
-
-    public void load(long id) {
-        repository.load(id, callback);
-    }
-
-    public void load(List<Long> ids) {
-        repository.load(ids, callback);
+        loadSelected();
     }
 
     public void loadSelected() {
         repository.loadSelected(callback);
+    }
+
+    public void loadById(long id) {
+        repository.loadById(id, callback);
+    }
+
+    public void loadByIds(List<Long> ids) {
+        repository.loadByIds(ids, callback);
     }
 
     private ContactsRepository.LoadCallback callback = new ContactsRepository.LoadCallback() {

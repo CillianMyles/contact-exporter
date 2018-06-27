@@ -4,10 +4,6 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.ViewGroup;
-
-import com.example.contactexporter.ui.progress.ProgressViewItemBinder;
-import com.example.contactexporter.ui.selection.ContactViewItemBinder;
 
 import java.util.List;
 
@@ -15,6 +11,7 @@ import java.util.List;
  * Created by Cillian Myles on 27/06/2018.
  * Copyright (c) 2018 Cillian Myles. All rights reserved.
  */
+@SuppressWarnings("WeakerAccess")
 public abstract class ViewItemAdapter extends RecyclerView.Adapter<ViewItemBinder> {
 
     private final Context context;
@@ -56,21 +53,6 @@ public abstract class ViewItemAdapter extends RecyclerView.Adapter<ViewItemBinde
     public int getItemViewType(int position) {
         ViewItem item = getItem(position);
         return item.getItemViewType();
-    }
-
-    // TODO: move below method to subclasses
-    @NonNull
-    @Override
-    public ViewItemBinder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        switch (viewType) {
-            case ViewItem.TYPE_CONTACT: {
-                return ContactViewItemBinder.inflate(getInflater(), parent);
-            }
-            case ViewItem.TYPE_PROGRESS: {
-                return ProgressViewItemBinder.inflate(getInflater(), parent);
-            }
-        }
-        throw new IllegalStateException("View type not supported.");
     }
 
     @Override

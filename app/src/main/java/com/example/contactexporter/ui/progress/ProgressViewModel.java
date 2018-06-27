@@ -20,7 +20,6 @@ public class ProgressViewModel extends AndroidViewModel {
     public ProgressViewModel(@NonNull Application application) {
         super(application);
         liveData = ProgressLiveData.getInstance(application);
-        loadSelected();
     }
 
     public LiveData<List<ViewItem>> getLiveData() {
@@ -28,11 +27,11 @@ public class ProgressViewModel extends AndroidViewModel {
     }
 
     public void load(long id) {
-        liveData.load(id);
+        liveData.loadById(id);
     }
 
     public void load(@NonNull List<Long> ids) {
-        liveData.load(ids);
+        liveData.loadByIds(ids);
     }
 
     public void loadSelected() {

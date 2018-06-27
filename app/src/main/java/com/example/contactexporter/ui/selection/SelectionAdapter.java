@@ -1,10 +1,13 @@
 package com.example.contactexporter.ui.selection;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
+import android.view.ViewGroup;
 
 import com.example.contactexporter.data.Contact;
 import com.example.contactexporter.ui.base.ViewItem;
 import com.example.contactexporter.ui.base.ViewItemAdapter;
+import com.example.contactexporter.ui.base.ViewItemBinder;
 import com.turingtechnologies.materialscrollbar.INameableAdapter;
 
 /**
@@ -16,10 +19,21 @@ public class SelectionAdapter extends ViewItemAdapter implements INameableAdapte
     private final LetterChangedListener letterListener;
     private final ContactSelectedListener contactListener;
 
-    public SelectionAdapter(Context context, LetterChangedListener letterListener, ContactSelectedListener contactListener) {
+    SelectionAdapter(Context context, LetterChangedListener letterListener, ContactSelectedListener contactListener) {
         super(context);
         this.letterListener = letterListener;
         this.contactListener = contactListener;
+    }
+
+    @NonNull
+    @Override
+    public ViewItemBinder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        switch (viewType) {
+            case ViewItem.TYPE_CONTACT: {
+                return ContactViewItemBinder.inflate(getInflater(), parent);
+            }
+        }
+        throw new IllegalStateException("View type not supported.");
     }
 
     @Override
@@ -42,9 +56,6 @@ public class SelectionAdapter extends ViewItemAdapter implements INameableAdapte
                     letterListener.letterChanged(character);
                 }
                 return character;
-            }
-            case ViewItem.TYPE_PROGRESS: {
-                return Contact.CHAR_NONE; // TODO: remove!?
             }
         }
         throw new IllegalStateException("View type not supported.");

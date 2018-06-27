@@ -85,18 +85,18 @@ public class ContactsRepository implements ContactsDataSource {
     }
 
     @Override
-    public void load(long id, @NonNull LoadCallback callback) {
-        dummySource.load(id, callback); // TODO: change to LocalDataSource
+    public void loadById(long id, @NonNull LoadCallback callback) {
+        dummySource.loadById(id, callback); // TODO: change to LocalDataSource
     }
 
     @Override
-    public void load(@NonNull List<Long> ids, @NonNull LoadCallback callback) {
-        dummySource.load(ids, callback); // TODO: change to LocalDataSource
+    public void loadByIds(@NonNull List<Long> ids, @NonNull LoadCallback callback) {
+        dummySource.loadByIds(ids, callback); // TODO: change to LocalDataSource
     }
 
     // TODO: add to ContactsDataSource !?
     public void loadSelected(@NonNull LoadCallback callback) {
-        dummySource.load(selectedIds, callback); // TODO: change to LocalDataSource
+        dummySource.loadByIds(selectedIds, callback); // TODO: change to LocalDataSource
     }
 
     public void contactSelection(long contactId, boolean isSelected) {

@@ -47,12 +47,12 @@ public class LocalDataSource implements ContactsDataSource {
     }
 
     @Override
-    public void load(long id, @NonNull LoadCallback callback) {
+    public void loadById(long id, @NonNull LoadCallback callback) {
         // TODO: implement !!
     }
 
     @Override
-    public void load(@NonNull List<Long> ids, @NonNull LoadCallback callback) {
+    public void loadByIds(@NonNull List<Long> ids, @NonNull LoadCallback callback) {
         // TODO: implement !!
     }
 }
