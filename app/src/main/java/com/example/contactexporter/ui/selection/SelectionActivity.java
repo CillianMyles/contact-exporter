@@ -243,10 +243,7 @@ public class SelectionActivity extends AppCompatActivity
                 if (selectedIds == null || selectedIds.isEmpty()) {
                     return true;
                 }
-                Intent intent = new Intent(this, ProgressActivity.class);
-                // TODO: remove or delete contact ids from intent!?
-                intent.putExtra(SelectionActivity.EXTRA_CONTACT_IDS, TextUtils.join(",", selectedIds));
-                startActivity(intent);
+                startActivity(new Intent(this, ProgressActivity.class));
                 return true;
             }
         }
