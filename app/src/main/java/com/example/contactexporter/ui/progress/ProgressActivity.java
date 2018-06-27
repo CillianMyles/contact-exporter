@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 
 import com.example.contactexporter.R;
 import com.example.contactexporter.ui.base.ViewItem;
@@ -46,16 +47,24 @@ public class ProgressActivity extends AppCompatActivity {
 
     private void loadData() {
         viewModel = ViewModelProviders.of(this).get(ProgressViewModel.class);
-        viewModel.getLiveData().observe(this, observer);
+        viewModel.getProgressData().observe(this, listObserver);
+        viewModel.isFinished().observe(this, finishedObserver);
     }
 
-    private Observer<List<ViewItem>> observer = new Observer<List<ViewItem>>() {
+    private Observer<List<ViewItem>> listObserver = new Observer<List<ViewItem>>() {
         @Override
         public void onChanged(@Nullable List<ViewItem> items) {
             boolean validResults = items != null && !items.isEmpty();
             if (validResults) {
                 adapter.swap(items);
             }
+        }
+    };
+
+    private Observer<Boolean> finishedObserver = new Observer<Boolean>() {
+        @Override
+        public void onChanged(@Nullable Boolean isFinished) {
+            Log.e(TAG, "isFinished: " + isFinished); // TODO: ...
         }
     };
 }

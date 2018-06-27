@@ -3,6 +3,9 @@ package com.example.contactexporter.ui.progress;
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.MutableLiveData;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.annotation.NonNull;
 
 import com.example.contactexporter.ui.base.ViewItem;
@@ -15,15 +18,28 @@ import java.util.List;
  */
 public class ProgressViewModel extends AndroidViewModel {
 
-    private final ProgressLiveData liveData;
+    private final ProgressLiveData progressData;
+    private final MutableLiveData<Boolean> isFinished;
 
     public ProgressViewModel(@NonNull Application application) {
         super(application);
-        liveData = ProgressLiveData.getInstance(application);
+        progressData = ProgressLiveData.getInstance(application);
+        isFinished = new MutableLiveData<>();
+        isFinished.setValue(false);
+        fakeDelayedCompletion(); // TODO: delete this!!
     }
 
-    public LiveData<List<ViewItem>> getLiveData() {
-        return liveData;
+    private void fakeDelayedCompletion() {
+        Handler handler = new Handler(Looper.getMainLooper());
+        handler.postDelayed(() -> isFinished.setValue(true), 2000);
+    }
+
+    public LiveData<List<ViewItem>> getProgressData() {
+        return progressData;
+    }
+
+    public LiveData<Boolean> isFinished() {
+        return isFinished;
     }
 
     public void onDestroy() {
@@ -31,14 +47,14 @@ public class ProgressViewModel extends AndroidViewModel {
     }
 
     public void load(long id) {
-        liveData.loadById(id);
+        progressData.loadById(id);
     }
 
     public void load(@NonNull List<Long> ids) {
-        liveData.loadByIds(ids);
+        progressData.loadByIds(ids);
     }
 
     public void loadSelected() {
-        liveData.loadSelected();
+        progressData.loadSelected();
     }
 }
