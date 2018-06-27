@@ -37,10 +37,10 @@ import static android.support.design.widget.Snackbar.LENGTH_LONG;
  * Created by Cillian Myles on 27/03/2018.
  * Copyright (c) 2018 Cillian Myles. All rights reserved.
  */
-public class MainActivity extends AppCompatActivity
+public class SelectionActivity extends AppCompatActivity
         implements LetterChangedListener, ContactSelectedListener {
 
-    private static final String TAG = MainActivity.class.getSimpleName();
+    private static final String TAG = SelectionActivity.class.getSimpleName();
 
     public static final String EXTRA_CONTACT_IDS = "contact-ids";
 
@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_selection);
         bindViews();
         initRecyclerView();
         checkPermissionAndLoad();
@@ -197,7 +197,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_selection, menu);
         initSearchInterface(menu);
         // TODO: only show done option if >= 1 contact selected!?
         return true;
@@ -244,7 +244,7 @@ public class MainActivity extends AppCompatActivity
                 }
                 Intent intent = new Intent(this, ProgressActivity.class);
                 // TODO: remove or delete contact ids from intent!?
-                intent.putExtra(MainActivity.EXTRA_CONTACT_IDS, TextUtils.join(",", selectedIds));
+                intent.putExtra(SelectionActivity.EXTRA_CONTACT_IDS, TextUtils.join(",", selectedIds));
                 startActivity(intent);
                 return true;
             }
