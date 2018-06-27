@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.example.contactexporter.R;
 import com.example.contactexporter.data.Contact;
+import com.example.contactexporter.ui.base.ViewItemBinder;
 import com.squareup.picasso.Picasso;
 
 /**

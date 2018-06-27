@@ -5,7 +5,7 @@ import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
 import android.support.annotation.NonNull;
 
-import com.example.contactexporter.ui.ViewItem;
+import com.example.contactexporter.ui.base.ViewItem;
 
 import java.util.List;
 import java.util.Map;

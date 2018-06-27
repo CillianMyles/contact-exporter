@@ -3,7 +3,7 @@ package com.example.contactexporter.data.dummy;
 import com.example.contactexporter.data.Contact;
 import com.example.contactexporter.ui.ContactViewItem;
 import com.example.contactexporter.ui.ProgressViewItem;
-import com.example.contactexporter.ui.ViewItem;
+import com.example.contactexporter.ui.base.ViewItem;
 
 import java.util.ArrayList;
 import java.util.Arrays;

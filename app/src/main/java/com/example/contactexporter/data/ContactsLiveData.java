@@ -5,7 +5,7 @@ import android.arch.lifecycle.LiveData;
 
 import com.example.contactexporter.data.dummy.DummyDataSource;
 import com.example.contactexporter.data.local.LocalDataSource;
-import com.example.contactexporter.ui.ViewItem;
+import com.example.contactexporter.ui.base.ViewItem;
 
 import java.util.List;
 import java.util.Map;

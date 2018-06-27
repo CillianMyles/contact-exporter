@@ -6,7 +6,7 @@ import android.util.Log;
 import com.example.contactexporter.data.dummy.DummyDataSource;
 import com.example.contactexporter.data.local.LocalDataSource;
 import com.example.contactexporter.ui.ContactViewItem;
-import com.example.contactexporter.ui.ViewItem;
+import com.example.contactexporter.ui.base.ViewItem;
 
 import java.util.ArrayList;
 import java.util.List;

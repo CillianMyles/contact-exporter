@@ -2,7 +2,7 @@ package com.example.contactexporter.data;
 
 import android.support.annotation.NonNull;
 
-import com.example.contactexporter.ui.ViewItem;
+import com.example.contactexporter.ui.base.ViewItem;
 
 import java.util.List;
 

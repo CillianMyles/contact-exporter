@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 
 import com.example.contactexporter.R;
 import com.example.contactexporter.data.ContactsViewModel;
+import com.example.contactexporter.ui.base.ViewItem;
 
 import java.util.List;
 

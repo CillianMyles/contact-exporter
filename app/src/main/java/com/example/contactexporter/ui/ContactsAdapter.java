@@ -7,6 +7,8 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.example.contactexporter.data.Contact;
+import com.example.contactexporter.ui.base.ViewItem;
+import com.example.contactexporter.ui.base.ViewItemBinder;
 import com.turingtechnologies.materialscrollbar.INameableAdapter;
 
 import java.util.List;

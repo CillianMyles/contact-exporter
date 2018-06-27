@@ -1,6 +1,7 @@
 package com.example.contactexporter.ui;
 
 import com.example.contactexporter.data.Contact;
+import com.example.contactexporter.ui.base.ViewItem;
 
 /**
  * Created by Cillian Myles on 26/06/2018.

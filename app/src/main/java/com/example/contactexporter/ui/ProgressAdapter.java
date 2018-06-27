@@ -6,6 +6,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
+import com.example.contactexporter.ui.base.ViewItem;
+import com.example.contactexporter.ui.base.ViewItemBinder;
+
 import java.util.List;
 
 /**

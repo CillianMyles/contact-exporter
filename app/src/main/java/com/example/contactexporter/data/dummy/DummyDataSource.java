@@ -4,7 +4,7 @@ import android.support.annotation.NonNull;
 
 import com.example.contactexporter.data.ContactsDataSource;
 import com.example.contactexporter.ui.ContactViewItem;
-import com.example.contactexporter.ui.ViewItem;
+import com.example.contactexporter.ui.base.ViewItem;
 
 import java.util.ArrayList;
 import java.util.List;
