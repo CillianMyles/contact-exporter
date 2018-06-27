@@ -1,8 +1,9 @@
-package com.example.contactexporter.data;
+package com.example.contactexporter.ui.selection;
 
 import android.app.Application;
 import android.arch.lifecycle.LiveData;
 
+import com.example.contactexporter.data.ContactsRepository;
 import com.example.contactexporter.data.dummy.DummyDataSource;
 import com.example.contactexporter.data.local.LocalDataSource;
 import com.example.contactexporter.ui.base.ViewItem;
@@ -14,7 +15,7 @@ import java.util.Map;
  * Created by Cillian Myles on 27/03/2018.
  * Copyright (c) 2018 Cillian Myles. All rights reserved.
  */
-public class ContactsLiveData extends LiveData<List<ViewItem>> {
+public class SelectionLiveData extends LiveData<List<ViewItem>> {
 
     public static final int MODE_ALL = 0;
     public static final int MODE_SEARCH = 1;
@@ -26,21 +27,21 @@ public class ContactsLiveData extends LiveData<List<ViewItem>> {
     private final Application context; // TODO: remove!?
     private final ContactsRepository repository;
 
-    private static volatile ContactsLiveData INSTANCE;
+    private static volatile SelectionLiveData INSTANCE;
     private static final Object lock = new Object();
 
-    public static ContactsLiveData getInstance(Application context) {
+    public static SelectionLiveData getInstance(Application context) {
         if (INSTANCE == null) {
             synchronized (lock) {
                 if (INSTANCE == null) {
-                    INSTANCE = new ContactsLiveData(context);
+                    INSTANCE = new SelectionLiveData(context);
                 }
             }
         }
         return INSTANCE;
     }
 
-    private ContactsLiveData(Application context) {
+    private SelectionLiveData(Application context) {
         this.context = context;
         repository = ContactsRepository.getInstance(
                 LocalDataSource.getInstance(),
@@ -61,16 +62,6 @@ public class ContactsLiveData extends LiveData<List<ViewItem>> {
     public void letter(String letter) {
         mode = MODE_LETTER;
         repository.letter(letter, callback);
-    }
-
-    public void load(long id) {
-        mode = MODE_ALL;
-        repository.load(id, callback);
-    }
-
-    public void load(List<Long> ids) {
-        mode = MODE_ALL;
-        repository.load(ids, callback);
     }
 
     private ContactsRepository.LoadCallback callback = new ContactsRepository.LoadCallback() {

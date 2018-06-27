@@ -6,8 +6,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
-import com.example.contactexporter.ui.selection.ContactViewItemBinder;
 import com.example.contactexporter.ui.progress.ProgressViewItemBinder;
+import com.example.contactexporter.ui.selection.ContactViewItemBinder;
 
 import java.util.List;
 
@@ -58,6 +58,7 @@ public abstract class ViewItemAdapter extends RecyclerView.Adapter<ViewItemBinde
         return item.getItemViewType();
     }
 
+    // TODO: move below method to subclasses
     @NonNull
     @Override
     public ViewItemBinder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

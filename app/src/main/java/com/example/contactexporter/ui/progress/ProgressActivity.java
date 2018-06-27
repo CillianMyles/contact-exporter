@@ -9,7 +9,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.example.contactexporter.R;
-import com.example.contactexporter.data.ContactsViewModel;
 import com.example.contactexporter.ui.base.ViewItem;
 
 import java.util.List;
@@ -24,7 +23,7 @@ public class ProgressActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private ProgressAdapter adapter;
-    private ContactsViewModel viewModel;
+    private ProgressViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,9 +45,8 @@ public class ProgressActivity extends AppCompatActivity {
     }
 
     private void loadData() {
-        viewModel = ViewModelProviders.of(this).get(ContactsViewModel.class);
+        viewModel = ViewModelProviders.of(this).get(ProgressViewModel.class);
         viewModel.getLiveData().observe(this, observer);
-        viewModel.load(viewModel.selectedIds());
     }
 
     private Observer<List<ViewItem>> observer = new Observer<List<ViewItem>>() {

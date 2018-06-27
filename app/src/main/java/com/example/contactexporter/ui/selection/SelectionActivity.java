@@ -23,7 +23,6 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.contactexporter.R;
-import com.example.contactexporter.data.ContactsViewModel;
 import com.example.contactexporter.ui.progress.ProgressActivity;
 import com.example.contactexporter.ui.base.ViewItem;
 import com.turingtechnologies.materialscrollbar.AlphabetIndicator;
@@ -54,7 +53,7 @@ public class SelectionActivity extends AppCompatActivity
     private SelectionAdapter adapter;
     private TextView currentLetter;
     private MaterialScrollBar letterScrollBar;
-    private ContactsViewModel viewModel;
+    private SelectionViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,7 +111,7 @@ public class SelectionActivity extends AppCompatActivity
     }
 
     private void loadContacts() {
-        viewModel = ViewModelProviders.of(this).get(ContactsViewModel.class);
+        viewModel = ViewModelProviders.of(this).get(SelectionViewModel.class);
         viewModel.getLiveData().observe(this, observer);
     }
 

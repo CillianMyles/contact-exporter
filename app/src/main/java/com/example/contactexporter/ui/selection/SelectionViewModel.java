@@ -1,4 +1,4 @@
-package com.example.contactexporter.data;
+package com.example.contactexporter.ui.selection;
 
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
@@ -14,13 +14,13 @@ import java.util.Map;
  * Created by Cillian Myles on 27/03/2018.
  * Copyright (c) 2018 Cillian Myles. All rights reserved.
  */
-public class ContactsViewModel extends AndroidViewModel {
+public class SelectionViewModel extends AndroidViewModel {
 
-    private final ContactsLiveData liveData;
+    private final SelectionLiveData liveData;
 
-    public ContactsViewModel(@NonNull Application application) {
+    public SelectionViewModel(@NonNull Application application) {
         super(application);
-        liveData = ContactsLiveData.getInstance(application);
+        liveData = SelectionLiveData.getInstance(application);
     }
 
     public LiveData<List<ViewItem>> getLiveData() {
@@ -37,14 +37,6 @@ public class ContactsViewModel extends AndroidViewModel {
 
     public void letter(@NonNull String letter) {
         liveData.letter(letter);
-    }
-
-    public void load(long id) {
-        liveData.load(id);
-    }
-
-    public void load(@NonNull List<Long> ids) {
-        liveData.load(ids);
     }
 
     public void contactSelection(long contactId, boolean isSelected) {
