@@ -61,10 +61,7 @@ public class ProgressActivity extends AppCompatActivity {
         }
     };
 
-    private Observer<Boolean> finishedObserver = new Observer<Boolean>() {
-        @Override
-        public void onChanged(@Nullable Boolean isFinished) {
-            Log.e(TAG, "isFinished: " + isFinished); // TODO: ...
-        }
+    private Observer<Boolean> finishedObserver = isFinished -> {
+        Log.e(TAG, "isFinished: " + isFinished); // TODO: ...
     };
 }
