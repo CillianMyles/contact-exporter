@@ -26,6 +26,10 @@ public class ProgressViewModel extends AndroidViewModel {
         return liveData;
     }
 
+    public void onDestroy() {
+        // TODO: fix state of isFinished!? (loading animation)
+    }
+
     public void load(long id) {
         liveData.loadById(id);
     }
