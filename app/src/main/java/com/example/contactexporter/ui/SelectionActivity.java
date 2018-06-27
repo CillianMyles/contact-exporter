@@ -50,7 +50,7 @@ public class SelectionActivity extends AppCompatActivity
     private View baseLayout;
     private TextView message;
     private RecyclerView recyclerView;
-    private ContactsAdapter adapter;
+    private SelectionAdapter adapter;
     private TextView currentLetter;
     private MaterialScrollBar letterScrollBar;
     private ContactsViewModel viewModel;
@@ -74,7 +74,7 @@ public class SelectionActivity extends AppCompatActivity
     }
 
     private void initRecyclerView() {
-        adapter = new ContactsAdapter(this, this, this);
+        adapter = new SelectionAdapter(this, this, this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         letterScrollBar.setIndicator(new AlphabetIndicator(this), false);
