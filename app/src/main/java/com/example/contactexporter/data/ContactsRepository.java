@@ -40,6 +40,12 @@ public class ContactsRepository implements ContactsDataSource {
         return INSTANCE;
     }
 
+    public static ContactsRepository getInstance() {
+        return getInstance(
+                LocalDataSource.getInstance(),
+                DummyDataSource.getInstance());
+    }
+
     private ContactsRepository(LocalDataSource local, DummyDataSource dummy) {
         if (local == null || dummy == null) {
             throw new IllegalStateException("Both local and dummy data sources must be valid");
