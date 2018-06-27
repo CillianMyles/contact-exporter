@@ -1,4 +1,4 @@
-package com.example.contactexporter.ui;
+package com.example.contactexporter.ui.selection;
 
 import android.content.Context;
 

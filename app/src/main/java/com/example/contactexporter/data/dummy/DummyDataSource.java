@@ -3,8 +3,8 @@ package com.example.contactexporter.data.dummy;
 import android.support.annotation.NonNull;
 
 import com.example.contactexporter.data.ContactsDataSource;
-import com.example.contactexporter.ui.ContactViewItem;
 import com.example.contactexporter.ui.base.ViewItem;
+import com.example.contactexporter.ui.selection.ContactViewItem;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.example.contactexporter.ui;
+package com.example.contactexporter.ui.progress;
 
 import com.example.contactexporter.data.Contact;
 import com.example.contactexporter.ui.base.ViewItem;

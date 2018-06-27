@@ -1,4 +1,4 @@
-package com.example.contactexporter.ui;
+package com.example.contactexporter.ui.progress;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;

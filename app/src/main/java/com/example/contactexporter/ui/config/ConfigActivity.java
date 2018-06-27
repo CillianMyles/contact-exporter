@@ -1,4 +1,4 @@
-package com.example.contactexporter.ui;
+package com.example.contactexporter.ui.config;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;

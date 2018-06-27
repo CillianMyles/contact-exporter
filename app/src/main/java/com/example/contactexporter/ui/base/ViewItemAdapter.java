@@ -6,8 +6,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
-import com.example.contactexporter.ui.ContactViewItemBinder;
-import com.example.contactexporter.ui.ProgressViewItemBinder;
+import com.example.contactexporter.ui.selection.ContactViewItemBinder;
+import com.example.contactexporter.ui.progress.ProgressViewItemBinder;
 
 import java.util.List;
 

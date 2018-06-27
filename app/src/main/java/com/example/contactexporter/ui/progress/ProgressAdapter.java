@@ -1,4 +1,4 @@
-package com.example.contactexporter.ui;
+package com.example.contactexporter.ui.progress;
 
 import android.content.Context;
 

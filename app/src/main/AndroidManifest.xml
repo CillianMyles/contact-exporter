@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ui.SelectionActivity"
+            android:name=".ui.selection.SelectionActivity"
             android:label="@string/selection_title"
             android:launchMode="singleTop">
             <intent-filter>
@@ -29,12 +29,12 @@
                 android:resource="@xml/searchable"/>
         </activity>
         <activity
-            android:name=".ui.ConfigActivity"
+            android:name=".ui.config.ConfigActivity"
             android:label="@string/config_title"
             android:launchMode="singleTop">
         </activity>
         <activity
-            android:name=".ui.ProgressActivity"
+            android:name=".ui.progress.ProgressActivity"
             android:label="@string/progress_title"
             android:launchMode="singleTop">
         </activity>

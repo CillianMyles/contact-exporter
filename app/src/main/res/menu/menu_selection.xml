@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.example.contactexporter.ui.SelectionActivity">
+    tools:context="com.example.contactexporter.ui.selection.SelectionActivity">
 
     <item
         android:id="@+id/action_search"

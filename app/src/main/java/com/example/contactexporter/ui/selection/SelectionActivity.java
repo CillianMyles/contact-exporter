@@ -1,4 +1,4 @@
-package com.example.contactexporter.ui;
+package com.example.contactexporter.ui.selection;
 
 import android.app.SearchManager;
 import android.arch.lifecycle.Observer;
@@ -24,6 +24,7 @@ import android.widget.TextView;
 
 import com.example.contactexporter.R;
 import com.example.contactexporter.data.ContactsViewModel;
+import com.example.contactexporter.ui.progress.ProgressActivity;
 import com.example.contactexporter.ui.base.ViewItem;
 import com.turingtechnologies.materialscrollbar.AlphabetIndicator;
 import com.turingtechnologies.materialscrollbar.MaterialScrollBar;

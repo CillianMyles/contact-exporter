@@ -1,4 +1,4 @@
-package com.example.contactexporter.ui;
+package com.example.contactexporter.ui.selection;
 
 /**
  * Created by Cillian Myles on 21/06/2018.
