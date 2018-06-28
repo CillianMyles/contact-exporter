@@ -34,8 +34,12 @@ public class ProgressViewModel extends AndroidViewModel {
         handler.postDelayed(() -> isFinished.setValue(true), 2000);
     }
 
-    public LiveData<List<ViewItem>> getProgressData() {
+    public ProgressLiveData getProgressData() {
         return progressData;
+    }
+
+    public void setValue(List<ViewItem> value) {
+        progressData.setValue(value);
     }
 
     public LiveData<Boolean> isFinished() {

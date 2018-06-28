@@ -3,6 +3,7 @@ package com.example.contactexporter.ui.progress;
 import android.content.Context;
 import android.content.res.Resources;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,6 +44,7 @@ public class ProgressViewItemBinder extends ViewItemBinder<ProgressViewItem> {
         final Resources resources = context.getResources();
         final Contact contact = getItem().getContact();
         final boolean isFinished = getItem().isFinished();
+        Log.e(TAG, "position: " + position + " - isFinished: " + isFinished + " - contact: " + contact); // TODO: remove
         image.setBackgroundColor(contact.backgroundColor(resources));
         if (!TextUtils.isEmpty(contact.photoUri())) {
             final int pixels = resources.getInteger(R.integer.contact_photo_pixels);
@@ -54,16 +56,8 @@ public class ProgressViewItemBinder extends ViewItemBinder<ProgressViewItem> {
         }
         initials.setText(contact.initials());
         name.setText(contact.fullName());
-        // TODO: convert below to proper delay/feedback!!
-//        progress.setVisibility(isFinished ? View.VISIBLE : View.INVISIBLE);
-//        done.setVisibility(isFinished ? View.INVISIBLE : View.VISIBLE);
-        if (!isFinished) {
-            progress.postDelayed(() -> {
-                getItem().setFinished(true);
-                progress.setVisibility(View.INVISIBLE);
-                done.setVisibility(View.VISIBLE);
-            }, 2000);
-        }
+        done.setVisibility(isFinished ? View.VISIBLE : View.INVISIBLE);
+        progress.setVisibility(isFinished ? View.INVISIBLE : View.VISIBLE);
     }
 
     public static ViewItemBinder inflate(LayoutInflater inflater, ViewGroup parent) {

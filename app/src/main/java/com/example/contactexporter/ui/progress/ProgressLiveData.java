@@ -37,6 +37,11 @@ public class ProgressLiveData extends LiveData<List<ViewItem>> {
         loadSelected();
     }
 
+    // FIXME: this is a hack - should either be MutableLiveData or the change should be sent deeper!?
+    public void setValue(List<ViewItem> value) {
+        super.setValue(value);
+    }
+
     public void loadSelected() {
         repository.loadSelected(callback);
     }

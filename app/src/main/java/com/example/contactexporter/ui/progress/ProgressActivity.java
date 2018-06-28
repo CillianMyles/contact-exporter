@@ -62,6 +62,14 @@ public class ProgressActivity extends AppCompatActivity {
     };
 
     private Observer<Boolean> finishedObserver = isFinished -> {
-        Log.e(TAG, "isFinished: " + isFinished); // TODO: ...
+        Log.e(TAG, "isFinished: " + isFinished); // TODO: remove
+        List<ViewItem> viewItems = viewModel.getProgressData().getValue();
+        assert viewItems != null;
+        for (ViewItem viewItem : viewItems) {
+            if (viewItem instanceof ProgressViewItem) {
+                ((ProgressViewItem) viewItem).setFinished(isFinished != null && isFinished);
+            }
+        }
+        viewModel.getProgressData().setValue(viewItems);
     };
 }
