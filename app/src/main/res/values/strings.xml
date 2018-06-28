@@ -12,5 +12,6 @@
     <string name="done">Done</string>
     <string name="config_title">Configuration</string>
     <string name="progress_title">Exporting…</string>
+    <string name="progress_finished">Finished</string>
 
 </resources>

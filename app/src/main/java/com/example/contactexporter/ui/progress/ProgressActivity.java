@@ -4,6 +4,7 @@ import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -22,6 +23,7 @@ public class ProgressActivity extends AppCompatActivity {
 
     private static final String TAG = ProgressActivity.class.getSimpleName();
 
+    private ActionBar toolbar;
     private RecyclerView recyclerView;
     private ProgressAdapter adapter;
     private ProgressViewModel viewModel;
@@ -36,6 +38,7 @@ public class ProgressActivity extends AppCompatActivity {
     }
 
     private void bindViews() {
+        toolbar = getSupportActionBar();
         recyclerView = findViewById(R.id.recycler_view);
     }
 
@@ -62,12 +65,16 @@ public class ProgressActivity extends AppCompatActivity {
     };
 
     private Observer<Boolean> finishedObserver = isFinished -> {
-        Log.e(TAG, "isFinished: " + isFinished); // TODO: remove
+        final boolean finished = isFinished != null && isFinished;
+        Log.e(TAG, "finished: " + finished); // TODO: remove
+        toolbar.setTitle(finished
+                ? R.string.progress_finished
+                : R.string.progress_title);
         List<ViewItem> viewItems = viewModel.getProgressData().getValue();
         assert viewItems != null;
         for (ViewItem viewItem : viewItems) {
             if (viewItem instanceof ProgressViewItem) {
-                ((ProgressViewItem) viewItem).setFinished(isFinished != null && isFinished);
+                ((ProgressViewItem) viewItem).setFinished(finished);
             }
         }
         viewModel.getProgressData().setValue(viewItems);
