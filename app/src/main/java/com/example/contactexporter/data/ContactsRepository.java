@@ -23,6 +23,7 @@ public class ContactsRepository implements ContactsDataSource {
     private static volatile ContactsRepository INSTANCE;
 
     private final List<Long> selectedIds;
+    private final List<Long> completedIds;
 
     private final LocalDataSource localSource;
     private final DummyDataSource dummySource;
@@ -53,6 +54,7 @@ public class ContactsRepository implements ContactsDataSource {
         this.localSource = local;
         this.dummySource = dummy;
         this.selectedIds = new ArrayList<>();
+        this.completedIds = new ArrayList<>();
     }
 
     @Override
@@ -106,16 +108,7 @@ public class ContactsRepository implements ContactsDataSource {
     }
 
     public void contactSelection(long contactId, boolean isSelected) {
-        if (isSelected) {
-            if (!selectedIds.contains(contactId)) {
-                selectedIds.add(contactId);
-            }
-        } else {
-            final int index = selectedIds.indexOf(contactId);
-            if (index != -1) {
-                selectedIds.remove(index);
-            }
-        }
+        updateList(selectedIds, contactId, isSelected);
         Log.e(TAG, "selectedIds: " + selectedIds); // TODO: remove!!
     }
 
@@ -126,7 +119,35 @@ public class ContactsRepository implements ContactsDataSource {
         }
     }
 
+    public void operationCompletion(long contactId, boolean isCompleted) {
+        updateList(completedIds, contactId, isCompleted);
+        Log.e(TAG, "completedIds: " + completedIds); // TODO: remove!!
+    }
+
+    public void operationCompletion(Map<Long, Boolean> operationCompletionMap) {
+        if (operationCompletionMap == null) return;
+        for (Map.Entry<Long, Boolean> entry : operationCompletionMap.entrySet()) {
+            contactSelection(entry.getKey(), entry.getValue());
+        }
+    }
+
     public List<Long> selectedIds() {
         return selectedIds;
+    }
+
+    private void updateList(List<Long> list, long item, boolean add) {
+        if (list == null) {
+            list = new ArrayList<>();
+        }
+        if (add) {
+            if (!list.contains(item)) {
+                list.add(item);
+            }
+        } else {
+            final int index = list.indexOf(item);
+            if (index != -1) {
+                list.remove(index);
+            }
+        }
     }
 }
