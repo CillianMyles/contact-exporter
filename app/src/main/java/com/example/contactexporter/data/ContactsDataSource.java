@@ -2,7 +2,7 @@ package com.example.contactexporter.data;
 
 import android.support.annotation.NonNull;
 
-import com.example.contactexporter.ui.base.ViewItem;
+import com.example.contactexporter.ui.base.ViewDataLoadedCallback;
 
 import java.util.List;
 
@@ -12,20 +12,13 @@ import java.util.List;
  */
 public interface ContactsDataSource {
 
-    interface LoadCallback {
+    void loadAll(@NonNull ViewDataLoadedCallback callback);
 
-        void onLoaded(List<ViewItem> contacts);
+    void search(@NonNull String name, @NonNull ViewDataLoadedCallback callback);
 
-        void onError(String message);
-    }
+    void letter(@NonNull String letter, @NonNull ViewDataLoadedCallback callback);
 
-    void loadAll(@NonNull LoadCallback callback);
+    void loadById(long id, @NonNull ViewDataLoadedCallback callback);
 
-    void search(@NonNull String name, @NonNull LoadCallback callback);
-
-    void letter(@NonNull String letter, @NonNull LoadCallback callback);
-
-    void loadById(long id, @NonNull LoadCallback callback);
-
-    void loadByIds(@NonNull List<Long> ids, @NonNull LoadCallback callback);
+    void loadByIds(@NonNull List<Long> ids, @NonNull ViewDataLoadedCallback callback);
 }

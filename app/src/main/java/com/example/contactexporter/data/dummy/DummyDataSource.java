@@ -3,6 +3,7 @@ package com.example.contactexporter.data.dummy;
 import android.support.annotation.NonNull;
 
 import com.example.contactexporter.data.ContactsDataSource;
+import com.example.contactexporter.ui.base.ViewDataLoadedCallback;
 import com.example.contactexporter.ui.base.ViewItem;
 import com.example.contactexporter.ui.selection.ContactViewItem;
 
@@ -35,22 +36,22 @@ public class DummyDataSource implements ContactsDataSource {
     }
 
     @Override
-    public void loadAll(@NonNull LoadCallback callback) {
+    public void loadAll(@NonNull ViewDataLoadedCallback callback) {
         callback.onLoaded(DummyData.contactItemsLongList());
     }
 
     @Override
-    public void search(@NonNull String name, @NonNull LoadCallback callback) {
+    public void search(@NonNull String name, @NonNull ViewDataLoadedCallback callback) {
         callback.onLoaded(DummyData.contactItems());
     }
 
     @Override
-    public void letter(@NonNull String letter, @NonNull LoadCallback callback) {
+    public void letter(@NonNull String letter, @NonNull ViewDataLoadedCallback callback) {
         callback.onLoaded(DummyData.contactItems());
     }
 
     @Override
-    public void loadById(long id, @NonNull LoadCallback callback) {
+    public void loadById(long id, @NonNull ViewDataLoadedCallback callback) {
         final List<ViewItem> all = DummyData.contactItemsLongList();
         for (ViewItem item : all) {
             if (item instanceof ContactViewItem && ((ContactViewItem) item).getContactId() == id) {
@@ -62,7 +63,7 @@ public class DummyDataSource implements ContactsDataSource {
     }
 
     @Override
-    public void loadByIds(@NonNull List<Long> ids, @NonNull LoadCallback callback) {
+    public void loadByIds(@NonNull List<Long> ids, @NonNull ViewDataLoadedCallback callback) {
         if (ids.isEmpty()) return;
         final List<ViewItem> all = DummyData.contactItemsLongList();
         final List<Long> idsLeft = new ArrayList<>(ids);

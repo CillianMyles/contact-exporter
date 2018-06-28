@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.example.contactexporter.data.dummy.DummyDataSource;
 import com.example.contactexporter.data.local.LocalDataSource;
+import com.example.contactexporter.ui.base.ViewDataLoadedCallback;
 import com.example.contactexporter.ui.base.ViewItem;
 import com.example.contactexporter.ui.selection.ContactViewItem;
 
@@ -58,15 +59,15 @@ public class ContactsRepository implements ContactsDataSource {
     }
 
     @Override
-    public void loadAll(@NonNull LoadCallback callback) {
+    public void loadAll(@NonNull ViewDataLoadedCallback callback) {
         // TODO: change to LocalDataSource
-        dummySource.loadAll(new LoadCallback() {
+        dummySource.loadAll(new ViewDataLoadedCallback() {
 
             @Override
-            public void onLoaded(List<ViewItem> contacts) {
+            public void onLoaded(List<ViewItem> viewItems) {
                 // TODO : remove this from UI thread!?
                 if (!selectedIds.isEmpty()) {
-                    for (ViewItem item : contacts) {
+                    for (ViewItem item : viewItems) {
                         if (item instanceof ContactViewItem) {
                             final ContactViewItem contactItem = (ContactViewItem) item;
                             final boolean isChecked = selectedIds.contains(contactItem.getContactId());
@@ -74,7 +75,7 @@ public class ContactsRepository implements ContactsDataSource {
                         }
                     }
                 }
-                callback.onLoaded(contacts);
+                callback.onLoaded(viewItems);
             }
 
             @Override
@@ -83,27 +84,27 @@ public class ContactsRepository implements ContactsDataSource {
     }
 
     @Override
-    public void search(@NonNull String name, @NonNull LoadCallback callback) {
+    public void search(@NonNull String name, @NonNull ViewDataLoadedCallback callback) {
         dummySource.search(name, callback); // TODO: change to LocalDataSource
     }
 
     @Override
-    public void letter(@NonNull String letter, @NonNull LoadCallback callback) {
+    public void letter(@NonNull String letter, @NonNull ViewDataLoadedCallback callback) {
         dummySource.letter(letter, callback); // TODO: change to LocalDataSource
     }
 
     @Override
-    public void loadById(long id, @NonNull LoadCallback callback) {
+    public void loadById(long id, @NonNull ViewDataLoadedCallback callback) {
         dummySource.loadById(id, callback); // TODO: change to LocalDataSource
     }
 
     @Override
-    public void loadByIds(@NonNull List<Long> ids, @NonNull LoadCallback callback) {
+    public void loadByIds(@NonNull List<Long> ids, @NonNull ViewDataLoadedCallback callback) {
         dummySource.loadByIds(ids, callback); // TODO: change to LocalDataSource
     }
 
     // TODO: add to ContactsDataSource !?
-    public void loadSelected(@NonNull LoadCallback callback) {
+    public void loadSelected(@NonNull ViewDataLoadedCallback callback) {
         dummySource.loadByIds(selectedIds, callback); // TODO: change to LocalDataSource
     }
 

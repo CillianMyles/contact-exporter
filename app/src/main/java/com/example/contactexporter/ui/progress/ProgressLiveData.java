@@ -4,6 +4,7 @@ import android.app.Application;
 import android.arch.lifecycle.LiveData;
 
 import com.example.contactexporter.data.ContactsRepository;
+import com.example.contactexporter.ui.base.ViewDataLoadedCallback;
 import com.example.contactexporter.ui.base.ViewItem;
 
 import java.util.List;
@@ -54,7 +55,7 @@ public class ProgressLiveData extends LiveData<List<ViewItem>> {
         repository.loadByIds(ids, callback);
     }
 
-    private ContactsRepository.LoadCallback callback = new ContactsRepository.LoadCallback() {
+    private ViewDataLoadedCallback callback = new ViewDataLoadedCallback() {
 
         @Override
         public void onLoaded(List<ViewItem> data) {
